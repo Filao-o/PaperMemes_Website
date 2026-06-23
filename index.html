@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Papermemes — Paper trading de memecoins sans risque</title>
+  <meta name="description" content="Papermemes simule le trading de memecoins sur de vrais prix de marché. Entraîne-toi, analyse tes erreurs, progresse — sans perdre d'argent réel." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav" role="banner">
+    <div class="nav-inner">
+      <a href="#" class="logo" aria-label="Papermemes — home">
+        <img src="logo/logo_PaperMeme-removebg-preview.png" alt="Papermemes" class="logo-img" />
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#why">Why us</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <a href="#install" class="btn btn-nav">Install extension</a>
+      <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile menu">
+      <nav>
+        <ul>
+          <li><a href="#features" class="mobile-link">Features</a></li>
+          <li><a href="#how" class="mobile-link">How it works</a></li>
+          <li><a href="#why" class="mobile-link">Why us</a></li>
+          <li><a href="#faq" class="mobile-link">FAQ</a></li>
+          <li><a href="#install" class="btn btn-mobile mobile-link">Install extension</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="hero" aria-label="Introduction">
+      <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-radial-overlay" aria-hidden="true"></div>
+
+      <div class="hero-body">
+
+        <div class="hero-badge" role="status">
+          <span class="badge-dot" aria-hidden="true"></span>
+          Paper Trading · Zéro risque · Prix réels
+        </div>
+
+        <h1 class="hero-title pixel-glass-text">
+          <em class="hero-word1">Paper</em>
+          <span class="hero-word2">Memes.</span>
+        </h1>
+
+        <p class="hero-desc">
+          Simule le trading de memecoins sur de vrais prix de marché avec un wallet virtuel en SOL. Gagne de l'expérience — sans risquer un seul centime.
+        </p>
+
+        <div class="hero-stats" role="list" aria-label="Chiffres clés">
+          <div class="stat" role="listitem">
+            <span class="stat-value">8 500+</span>
+            <span class="stat-label">Traders en formation</span>
+          </div>
+          <div class="stat-sep" aria-hidden="true"></div>
+          <div class="stat" role="listitem">
+            <span class="stat-value">$0</span>
+            <span class="stat-label">Argent réel requis</span>
+          </div>
+          <div class="stat-sep" aria-hidden="true"></div>
+          <div class="stat" role="listitem">
+            <span class="stat-value">4.8
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+            <span class="stat-label">Chrome Store</span>
+          </div>
+        </div>
+
+        <div class="hero-ctas" id="heroCtas">
+          <a href="#install" class="btn-pixel-primary">
+            Commencer gratuitement
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#how" class="btn-pixel-ghost">
+            Comment ça marche
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Bottom platforms ticker -->
+      <div class="hero-bottom-band" id="heroBottomBand">
+        <span class="hero-bottom-label">Integrates to your favorite trading platforms</span>
+        <div class="hero-bottom-ticker-wrap">
+          <div class="hero-bottom-ticker" id="heroBottomTicker">
+            <a href="https://axiom.trade" target="_blank" rel="noopener" class="platform-logo-link"><img src="logo/Axiom_-_Modifié-removebg-preview.png" alt="Axiom" class="platform-logo-img" /></a>
+            <a href="https://gmgn.ai" target="_blank" rel="noopener" class="platform-logo-link"><img src="logo/Gmgn-removebg-preview.png" alt="GMGN" class="platform-logo-img platform-logo-img--lg" /></a>
+            <a href="https://padre.gg" target="_blank" rel="noopener" class="platform-logo-link"><img src="logo/padre_-_Modifié-removebg-preview.png" alt="Padre" class="platform-logo-img" /></a>
+            <a href="https://photon-sol.tinyastro.io" target="_blank" rel="noopener" class="platform-logo-link"><img src="logo/Photon_-_Modifié-removebg-preview.png" alt="Photon" class="platform-logo-img" /></a>
+            <a href="https://axiom.trade" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/Axiom_-_Modifié-removebg-preview.png" alt="" class="platform-logo-img" /></a>
+            <a href="https://gmgn.ai" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/Gmgn-removebg-preview.png" alt="" class="platform-logo-img platform-logo-img--lg" /></a>
+            <a href="https://padre.gg" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/padre_-_Modifié-removebg-preview.png" alt="" class="platform-logo-img" /></a>
+            <a href="https://photon-sol.tinyastro.io" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/Photon_-_Modifié-removebg-preview.png" alt="" class="platform-logo-img" /></a>
+            <a href="https://axiom.trade" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/Axiom_-_Modifié-removebg-preview.png" alt="" class="platform-logo-img" /></a>
+            <a href="https://gmgn.ai" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/Gmgn-removebg-preview.png" alt="" class="platform-logo-img platform-logo-img--lg" /></a>
+            <a href="https://padre.gg" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/padre_-_Modifié-removebg-preview.png" alt="" class="platform-logo-img" /></a>
+            <a href="https://photon-sol.tinyastro.io" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/Photon_-_Modifié-removebg-preview.png" alt="" class="platform-logo-img" /></a>
+            <a href="https://axiom.trade" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/Axiom_-_Modifié-removebg-preview.png" alt="" class="platform-logo-img" /></a>
+            <a href="https://gmgn.ai" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/Gmgn-removebg-preview.png" alt="" class="platform-logo-img platform-logo-img--lg" /></a>
+            <a href="https://padre.gg" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/padre_-_Modifié-removebg-preview.png" alt="" class="platform-logo-img" /></a>
+            <a href="https://photon-sol.tinyastro.io" target="_blank" rel="noopener" class="platform-logo-link" aria-hidden="true" tabindex="-1"><img src="logo/Photon_-_Modifié-removebg-preview.png" alt="" class="platform-logo-img" /></a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SUITE -->
+    <section class="section suite" id="suite" aria-labelledby="suite-title">
+      <div class="suite-bg-blob suite-bg-blob--1" aria-hidden="true"></div>
+      <div class="suite-bg-blob suite-bg-blob--2" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-header">
+          <p class="section-tag">Fonctionnalités</p>
+          <h2 id="suite-title" class="section-title">La suite complète<br /><span class="text-white-dim">de paper trading</span></h2>
+          <p class="section-desc">Tout ce dont vous avez besoin pour apprendre à trader les memecoins, dans une seule extension.</p>
+        </header>
+
+        <div class="suite-grid">
+
+          <!-- LEFT: accordion -->
+          <div class="suite-features" role="list">
+
+            <div class="suite-item suite-item--active" data-index="0" role="listitem" tabindex="0" aria-selected="true">
+              <div class="suite-item-accent" aria-hidden="true"></div>
+              <div class="suite-item-inner">
+                <div class="suite-item-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/><path d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1z"/><path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/></svg>
+                </div>
+                <div class="suite-item-body">
+                  <h3 class="suite-item-title">Wallet virtuel en SOL</h3>
+                  <div class="suite-item-desc">
+                    <p>Reçois un solde virtuel en SOL dès le lancement. Toggle SOL/USD en un clic, reset à tout moment avec le montant de ton choix — aucun wallet réel requis.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="suite-item-progress" aria-hidden="true"><div class="suite-item-progress-bar"></div></div>
+            </div>
+
+            <div class="suite-item" data-index="1" role="listitem" tabindex="0" aria-selected="false">
+              <div class="suite-item-accent" aria-hidden="true"></div>
+              <div class="suite-item-inner">
+                <div class="suite-item-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <div class="suite-item-body">
+                  <h3 class="suite-item-title">Paramètres réalistes</h3>
+                  <div class="suite-item-desc">
+                    <p>Paramètres personnalisables pour simuler différentes conditions de marché et tester tes stratégies dans des contextes variés.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="suite-item-progress" aria-hidden="true"><div class="suite-item-progress-bar"></div></div>
+            </div>
+
+            <div class="suite-item" data-index="2" role="listitem" tabindex="0" aria-selected="false">
+              <div class="suite-item-accent" aria-hidden="true"></div>
+              <div class="suite-item-inner">
+                <div class="suite-item-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8l0 4l2 2"/><path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"/></svg>
+                </div>
+                <div class="suite-item-body">
+                  <h3 class="suite-item-title">Take Profit / Stop Loss</h3>
+                  <div class="suite-item-desc">
+                    <p>Presets TP à +10%, +20%, +50%, +100% et SL à -10%, -20%, -50%, -100%. Tes ordres s'exécutent automatiquement dès que le prix est atteint.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="suite-item-progress" aria-hidden="true"><div class="suite-item-progress-bar"></div></div>
+            </div>
+
+            <div class="suite-item" data-index="3" role="listitem" tabindex="0" aria-selected="false">
+              <div class="suite-item-accent" aria-hidden="true"></div>
+              <div class="suite-item-inner">
+                <div class="suite-item-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M15 9a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"/><path d="M9 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"/></svg>
+                </div>
+                <div class="suite-item-body">
+                  <h3 class="suite-item-title">Stats &amp; Analytics</h3>
+                  <div class="suite-item-desc">
+                    <p>PnL total, win rate, meilleur trade, nombre de positions — toutes tes stats clés en un coup d'œil.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="suite-item-progress" aria-hidden="true"><div class="suite-item-progress-bar"></div></div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT: image preview -->
+          <div class="suite-preview" aria-hidden="true">
+            <div class="suite-preview-inner">
+              <img src="image/wallet.png" alt="" class="suite-preview-img suite-img"             data-index="0" loading="lazy" />
+              <img src="image/trading-interface.png.png"        alt="" class="suite-preview-img suite-img suite-img--hidden" data-index="1" loading="lazy" />
+              <img src="image/Takeprofit.png"            alt="" class="suite-preview-img suite-img suite-img--hidden" data-index="2" loading="lazy" />
+              <img src="image/analytics.png"             alt="" class="suite-preview-img suite-img suite-img--hidden suite-img--sm" data-index="3" loading="lazy" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section how" id="how" aria-labelledby="how-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="how-title" class="how-title">Lancé en quelques secondes</h2>
+          <p class="how-subtitle">Aucune inscription requise. Installe et commence à trader.</p>
+        </header>
+
+        <div class="how-grid">
+
+          <div class="how-card reveal" data-glow>
+            <div class="how-circle">1</div>
+            <h3 class="how-card-title">Installe l'extension</h3>
+            <p class="how-card-desc">Ajoute Papermemes depuis le Chrome Web Store gratuitement.</p>
+          </div>
+
+          <div class="how-card reveal" data-glow>
+            <div class="how-circle">2</div>
+            <h3 class="how-card-title">Ouvre une plateforme</h3>
+            <p class="how-card-desc">Sélectionnez votre plateforme de trading préférée Solana et configurez vos préférences.</p>
+          </div>
+
+          <div class="how-card reveal" data-glow>
+            <div class="how-circle">3</div>
+            <h3 class="how-card-title">Commence a trader</h3>
+            <p class="how-card-desc">Débutez en simulation avec des fonds virtuels et testez vos stratégies sans risque sur des données de marché réelles.</p>
+          </div>
+
+        </div><!-- end how-grid -->
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="section why" id="why" aria-labelledby="why-title">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-tag">Pourquoi Papermemes</p>
+          <h2 id="why-title" class="section-title">Apprendre à trader<br /><span class="text-white-dim">sans payer le prix fort</span></h2>
+        </header>
+
+        <div class="why-grid">
+          <article class="why-card reveal">
+            <svg class="why-icon-wrap" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h3>Zéro risque financier</h3>
+            <p>Chaque trade est simulé avec un wallet virtuel en SOL. Peu importe ce que tu perds — tu n'as perdu que du temps et gagné de l'expérience.</p>
+          </article>
+
+          <article class="why-card reveal">
+            <svg class="why-icon-wrap" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+            <h3>Suivi des entrées</h3>
+            <p>Visualisez chaque entrée effectuée sur une position avec la date et l'heure de l'opération, le montant de SOL investi et le total de SOL retiré. Un moyen simple et efficace de suivre l'évolution de vos trades.</p>
+          </article>
+
+          <article class="why-card reveal">
+            <svg class="why-icon-wrap" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <h3>Calendrier de performances</h3>
+            <p>Visualise tes gains et pertes jour par jour en vue hebdomadaire ou mensuelle. Identifie tes meilleures séquences et tes jours de drawdown.</p>
+          </article>
+
+          <article class="why-card reveal">
+            <svg class="why-icon-wrap" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            <h3>Rugcheck intégré</h3>
+            <p>Avant chaque trade, l'extension analyse le token : score de risque, pourcentage des top holders, liquidité. Tu trades avec les yeux ouverts.</p>
+          </article>
+
+          <article class="why-card reveal">
+            <svg class="why-icon-wrap" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            <h3>Historique filtrable</h3>
+            <p>Filtre ton historique de trades par ALL, Active, Gain ou Loss. Retrouve instantanément tes meilleures et pires positions pour en tirer des leçons.</p>
+          </article>
+
+          <article class="why-card reveal">
+            <svg class="why-icon-wrap" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M22 3L2 3"/>
+              <path d="M22 21L18 21M2 21L14 21"/>
+              <path d="M9 8L8 8C6.11438 8 5.17157 8 4.58579 8.58579C4 9.17157 4 10.1144 4 12C4 13.8856 4 14.8284 4.58579 15.4142C5.17157 16 6.11438 16 8 16H16C17.8856 16 18.8284 16 19.4142 15.4142C20 14.8284 20 13.8856 20 12C20 10.1144 20 9.17157 19.4142 8.58579C18.8284 8 17.8856 8 16 8L13 8"/>
+            </svg>
+            <h3>Widget détachable</h3>
+            <p>Widget en trois blocs : un bloc pour votre wallet SOL, un bloc avec les informations du token et des achats, et un bloc dédié à la gestion des positions avec les boutons de Take Profit (TP) et Stop Loss (SL).</p>
+          </article>
+        </div>
+
+        <!-- TESTIMONIALS -->
+        <div class="testimonials">
+          <h3 class="testimonials-title">Ce que disent nos traders</h3>
+          <div class="testimonials-grid">
+
+            <blockquote class="testimonial reveal">
+              <div class="t-stars" aria-label="5 étoiles sur 5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <p>« J'avais perdu 600 € sur mes premiers trades réels. Avec Papermemes, j'ai pu rejouer ces situations, comprendre mes erreurs et construire une vraie stratégie. »</p>
+              <footer class="t-author">
+                <div class="t-avatar" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                  <cite class="t-name">Lucas M.</cite>
+                  <span class="t-role">Passé au vrai trading après 3 mois</span>
+                </div>
+              </footer>
+            </blockquote>
+
+            <blockquote class="testimonial reveal">
+              <div class="t-stars" aria-label="5 étoiles sur 5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <p>« Mon win rate simulé était à 64% après 6 semaines. Quand je suis passé en réel, j'avais confiance — et les résultats ont suivi. »</p>
+              <footer class="t-author">
+                <div class="t-avatar" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                  <cite class="t-name">0xDegen_K</cite>
+                  <span class="t-role">Trader memecoins — Solana</span>
+                </div>
+              </footer>
+            </blockquote>
+
+            <blockquote class="testimonial reveal">
+              <div class="t-stars" aria-label="5 étoiles sur 5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <p>« Le journal de trading m'a changé la vie. Je voyais exactement où je faisais des erreurs. Mon win rate est passé de 40% à 68%. »</p>
+              <footer class="t-author">
+                <div class="t-avatar" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                  <cite class="t-name">Sophie R.</cite>
+                  <span class="t-role">Débutante devenue profitable</span>
+                </div>
+              </footer>
+            </blockquote>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-tag">FAQ</p>
+          <h2 id="faq-title" class="section-title">Questions <span class="text-white-dim">fréquentes</span></h2>
+        </header>
+
+        <div class="faq-list" role="list">
+
+          <div class="faq-item reveal" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              C'est quoi le paper trading ?
+              <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer" hidden>
+              <p>Le paper trading consiste à simuler des trades avec de l'argent fictif sur de vrais prix de marché. Cela permet d'apprendre le trading, de tester des stratégies et de prendre de l'expérience sans risquer un seul euro.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Faut-il de l'argent réel pour utiliser Papermemes ?
+              <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer" hidden>
+              <p>Non, absolument pas. Papermemes est 100% gratuit et ne demande aucun dépôt. Tu reçois un capital fictif dès le lancement. Aucune connexion à un wallet ou exchange n'est nécessaire.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Les prix utilisés sont-ils réels ?
+              <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer" hidden>
+              <p>Oui. Papermemes utilise des données de prix en temps réel. Tes trades simulés se font au vrai cours du marché, ce qui rend l'entraînement le plus réaliste possible.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              Papermemes exécute-t-il de vrais trades ?
+              <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer" hidden>
+              <p>Non. Jamais. Papermemes est un outil de simulation uniquement. Aucun trade réel n'est exécuté, aucune crypto n'est achetée ou vendue en ton nom.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" role="listitem">
+            <button class="faq-question" aria-expanded="false">
+              L'extension est-elle gratuite ?
+              <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer" hidden>
+              <p>Oui, Papermemes est gratuit avec toutes les fonctionnalités essentielles. Un plan Premium est disponible pour débloquer le journal avancé, le replay de trades passés et l'accès au classement complet.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section cta-section" id="install" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-content">
+          <p class="cta-badge">8 500+ traders en formation</p>
+          <h2 id="cta-title" class="cta-title">Arrête d'apprendre<br /><span class="text-white-dim">en perdant de l'argent réel</span></h2>
+          <p class="cta-desc">Installe Papermemes, entraîne-toi sur de vrais marchés et passe au vrai trading uniquement quand tu es prêt.</p>
+          <a href="#" class="btn btn-primary btn-xl">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Commencer gratuitement
+          </a>
+          <ul class="cta-checks" aria-label="Avantages">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Aucune carte bancaire
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Aucun wallet requis
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Installation en 30 secondes
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo" aria-label="Papermemes — accueil">
+            <img src="logo/logo_PaperMeme-removebg-preview.png" alt="Papermemes" class="logo-img logo-img--footer" />
+          </a>
+          <p>Le paper trading de memecoins pour apprendre sans risquer.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Papermemes sur Twitter/X">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Twitter / X
+            </a>
+            <a href="#" class="social-link" aria-label="Papermemes sur Telegram">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Telegram
+            </a>
+            <a href="#" class="social-link" aria-label="Papermemes sur Discord">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Discord
+            </a>
+          </div>
+        </div>
+        <nav class="footer-links" aria-label="Liens du pied de page">
+          <div class="footer-col">
+            <h4>Produit</h4>
+            <a href="#features">Fonctionnalités</a>
+            <a href="#how">Comment ça marche</a>
+            <a href="#install">Installer</a>
+          </div>
+          <div class="footer-col">
+            <h4>Ressources</h4>
+            <a href="#">Documentation</a>
+            <a href="#">Changelog</a>
+            <a href="#">GitHub</a>
+          </div>
+          <div class="footer-col">
+            <h4>Légal</h4>
+            <a href="#">CGU</a>
+            <a href="#">Confidentialité</a>
+            <a href="#">Mentions légales</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Papermemes. Tous droits réservés.</p>
+        <p class="footer-disclaimer">Papermemes est un outil de paper trading uniquement. Aucun argent réel n'est impliqué. Ne constitue pas un conseil en investissement.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
