@@ -54,8 +54,7 @@ export default function Hero() {
           </div>
 
           <h1 className="hero-title">
-            <em className="hero-word1">Paper</em>
-            <span className="hero-word2">Memes.</span>
+            Entraînez-vous en <strong>demo</strong> dans des conditions <strong>réels</strong>.
           </h1>
 
           <p className="hero-desc">
