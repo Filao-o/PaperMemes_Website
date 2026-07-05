@@ -293,10 +293,10 @@ cite { font-style: normal; }
 }
 
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 48px;
-  align-items: center;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -415,11 +415,12 @@ cite { font-style: normal; }
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 100%;
 }
 
 .hero-visual-placeholder {
-  aspect-ratio: 16 / 10;
-  min-height: 280px;
+  aspect-ratio: 16 / 9;
+  width: 100%;
   background: var(--c-surface);
   border: 1px solid var(--c-border-md);
   border-radius: var(--r-lg);
@@ -1263,7 +1264,6 @@ cite { font-style: normal; }
   .nav-links, .btn-nav { display: none; }
   .nav-burger { display: flex; }
   .hero { padding: 88px 20px 40px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
   .hero-ctas { flex-direction: column; align-items: flex-start; }
   .hero-title { gap: 8px; }
   .why-grid { grid-template-columns: 1fr; }
