@@ -23,6 +23,10 @@ const ITEMS = [
     q: "L'extension est-elle gratuite ?",
     a: "Oui, Papermemes est gratuit avec toutes les fonctionnalités essentielles. Un plan Premium est disponible pour débloquer le journal avancé, le replay de trades passés et l'accès au classement complet.",
   },
+  {
+    q: 'Quelle est la différence entre Free et Premium ?',
+    a: "Le plan Free inclut le wallet virtuel, les prix réels, le TP/SL, le rugcheck intégré et l'historique filtrable. Le Premium débloque en plus le journal avancé, le replay de trades passés et l'accès au classement complet. Consulte la section Pricing pour le détail.",
+  },
 ];
 
 export default function FAQ() {

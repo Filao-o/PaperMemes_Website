@@ -55,6 +55,7 @@ export default function Nav() {
             <li><a href="#suite" onClick={e => scrollTo(e, '#suite')}>Features</a></li>
             <li><a href="#how" onClick={e => scrollTo(e, '#how')}>How it works</a></li>
             <li><a href="#why" onClick={e => scrollTo(e, '#why')}>Why us</a></li>
+            <li><a href="#pricing" onClick={e => scrollTo(e, '#pricing')}>Pricing</a></li>
             <li><a href="#faq" onClick={e => scrollTo(e, '#faq')}>FAQ</a></li>
           </ul>
         </nav>
@@ -80,6 +81,7 @@ export default function Nav() {
             <li><a href="#suite" onClick={e => scrollTo(e, '#suite')}>Features</a></li>
             <li><a href="#how" onClick={e => scrollTo(e, '#how')}>How it works</a></li>
             <li><a href="#why" onClick={e => scrollTo(e, '#why')}>Why us</a></li>
+            <li><a href="#pricing" onClick={e => scrollTo(e, '#pricing')}>Pricing</a></li>
             <li><a href="#faq" onClick={e => scrollTo(e, '#faq')}>FAQ</a></li>
             <li><a href="#install" className="btn btn-mobile" onClick={e => scrollTo(e, '#install')}>Install extension</a></li>
           </ul>

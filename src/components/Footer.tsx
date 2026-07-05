@@ -62,7 +62,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>© 2025 Papermemes. Tous droits réservés.</p>
+          <p>© {new Date().getFullYear()} Papermemes. Tous droits réservés.</p>
           <p className="footer-disclaimer">
             Papermemes est un outil de paper trading uniquement. Aucun argent réel n&apos;est impliqué. Ne constitue pas un conseil en investissement.
           </p>
