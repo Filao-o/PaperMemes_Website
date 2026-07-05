@@ -301,33 +301,19 @@ cite { font-style: normal; }
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  background-image: url('/image/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
 }
-.hero-bg::after {
-  content: '';
+.hero-bg-overlay {
   position: absolute;
   inset: 0;
-  backdrop-filter: blur(90px);
-  -webkit-backdrop-filter: blur(90px);
-}
-.hero-bg-blob {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.5;
-}
-.hero-bg-blob--1 {
-  width: 520px; height: 520px;
-  background: rgba(0, 230, 118, 0.18);
-  top: -140px; left: -80px;
-}
-.hero-bg-blob--2 {
-  width: 460px; height: 460px;
-  background: rgba(255, 255, 255, 0.08);
-  top: 40px; right: -100px;
-}
-.hero-bg-blob--3 {
-  width: 400px; height: 400px;
-  background: rgba(0, 230, 118, 0.10);
-  bottom: -160px; left: 45%;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.92) 0%,
+    rgba(0,0,0,0.75) 45%,
+    rgba(0,0,0,0.45) 100%
+  );
 }
 
 .hero-grid {
