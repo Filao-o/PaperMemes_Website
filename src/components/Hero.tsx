@@ -199,6 +199,7 @@ export default function Hero() {
                     alt={set === 0 ? p.alt : ''}
                     width={p.lg ? 80 : 56}
                     height={p.lg ? 40 : 28}
+                    style={{ width: 'auto', height: p.lg ? 40 : 28 }}
                     className={`platform-logo-img${p.lg ? ' platform-logo-img--lg' : ''}`}
                   />
                 </a>

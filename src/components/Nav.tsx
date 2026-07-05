@@ -46,6 +46,7 @@ export default function Nav() {
             alt="Papermemes"
             width={120}
             height={120}
+            style={{ width: 'auto', height: 120 }}
             className="logo-img"
             priority
           />
