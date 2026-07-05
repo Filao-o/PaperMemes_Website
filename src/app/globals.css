@@ -289,8 +289,7 @@ cite { font-style: normal; }
    ============================================================ */
 .hero {
   background: var(--c-bg);
-  padding: 140px 24px 64px;
-  overflow: hidden;
+  padding: 100px 24px 48px;
 }
 
 .hero-grid {
@@ -415,17 +414,19 @@ cite { font-style: normal; }
 .hero-visual {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
 .hero-visual-placeholder {
   aspect-ratio: 16 / 10;
+  min-height: 280px;
   background: var(--c-surface);
-  border: 1px solid var(--c-border);
+  border: 1px solid var(--c-border-md);
   border-radius: var(--r-lg);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
 }
 .hero-visual-placeholder span {
   font-size: 14px;
@@ -1261,7 +1262,7 @@ cite { font-style: normal; }
   .section { padding: var(--sp-7) 0; }
   .nav-links, .btn-nav { display: none; }
   .nav-burger { display: flex; }
-  .hero { padding: 100px 20px 48px; }
+  .hero { padding: 88px 20px 40px; }
   .hero-grid { grid-template-columns: 1fr; gap: 40px; }
   .hero-ctas { flex-direction: column; align-items: flex-start; }
   .hero-title { gap: 8px; }
