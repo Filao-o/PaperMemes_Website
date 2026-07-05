@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="footer-brand">
             <Link href="/" className="logo" aria-label="Papermemes — accueil">
               <Image
-                src="/logo/logo_PaperMeme-removebg-preview.png"
+                src="/logo/papermeme-removebg.png"
                 alt="Papermemes"
                 width={120}
                 height={120}

@@ -42,7 +42,7 @@ export default function Nav() {
       <div className="nav-inner">
         <Link href="/" className="logo" aria-label="Papermemes — home">
           <Image
-            src="/logo/logo_PaperMeme-removebg-preview.png"
+            src="/logo/papermeme-removebg.png"
             alt="Papermemes"
             width={120}
             height={120}

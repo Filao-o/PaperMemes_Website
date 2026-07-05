@@ -4,10 +4,10 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 const PLATFORMS = [
-  { href: 'https://axiom.trade', src: '/logo/Axiom_-_Modifié-removebg-preview.png', alt: 'Axiom', lg: false },
-  { href: 'https://gmgn.ai', src: '/logo/Gmgn-removebg-preview.png', alt: 'GMGN', lg: true },
-  { href: 'https://padre.gg', src: '/logo/padre_-_Modifié-removebg-preview.png', alt: 'Padre', lg: false },
-  { href: 'https://photon-sol.tinyastro.io', src: '/logo/Photon_-_Modifié-removebg-preview.png', alt: 'Photon', lg: false },
+  { href: 'https://axiom.trade', src: '/logo/axiom.png', alt: 'Axiom', lg: false },
+  { href: 'https://gmgn.ai', src: '/logo/gmgn.png', alt: 'GMGN', lg: true },
+  { href: 'https://padre.gg', src: '/logo/padre.png', alt: 'Padre', lg: false },
+  { href: 'https://photon-sol.tinyastro.io', src: '/logo/photon.png', alt: 'Photon', lg: false },
 ];
 
 export default function Hero() {

@@ -9,6 +9,7 @@ const ITEMS = [
   {
     title: 'Wallet virtuel en SOL',
     desc: 'Reçois un solde virtuel en SOL dès le lancement. Toggle SOL/USD en un clic, reset à tout moment avec le montant de ton choix — aucun wallet réel requis.',
+    // TODO: fichier manquant, en attente de l'auteur du projet
     img: '/image/wallet.png',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -22,6 +23,7 @@ const ITEMS = [
   {
     title: 'Paramètres réalistes',
     desc: 'Paramètres personnalisables pour simuler différentes conditions de marché et tester tes stratégies dans des contextes variés.',
+    // TODO: fichier manquant, en attente de l'auteur du projet
     img: '/image/trading-interface.png.png',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -33,6 +35,7 @@ const ITEMS = [
   {
     title: 'Take Profit / Stop Loss',
     desc: "Presets TP à +10%, +20%, +50%, +100% et SL à -10%, -20%, -50%, -100%. Tes ordres s'exécutent automatiquement dès que le prix est atteint.",
+    // TODO: fichier manquant, en attente de l'auteur du projet
     img: '/image/Takeprofit.png',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -43,6 +46,7 @@ const ITEMS = [
   {
     title: 'Stats & Analytics',
     desc: "PnL total, win rate, meilleur trade, nombre de positions — toutes tes stats clés en un coup d'œil.",
+    // TODO: fichier manquant, en attente de l'auteur du projet
     img: '/image/analytics.png',
     sm: true,
     icon: (
