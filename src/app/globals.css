@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&family=Space+Grotesk:wght@600;700;800&display=swap');
 
 /* ============================================================
    DESIGN TOKENS
@@ -958,7 +958,7 @@ cite { font-style: normal; }
 .pricing-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--sp-5);
+  gap: 24px;
   max-width: 780px;
   margin: 0 auto;
 }
@@ -967,7 +967,7 @@ cite { font-style: normal; }
   background: var(--c-surface);
   border: 1px solid var(--c-border);
   border-radius: var(--r-lg);
-  padding: var(--sp-7) var(--sp-6);
+  padding: 48px 32px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -982,29 +982,29 @@ cite { font-style: normal; }
 
 .pricing-card-badge {
   position: absolute;
-  top: calc(var(--sp-4) * -1 - 1px);
+  top: -17px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--c-text);
   color: #000;
   font-size: var(--text-xs);
   font-weight: 700;
-  padding: var(--sp-1) var(--sp-4);
+  padding: 4px 16px;
   border-radius: var(--r-full);
   letter-spacing: 0.02em;
 }
 
-.pricing-card-header { margin-bottom: var(--sp-6); }
+.pricing-card-header { margin-bottom: 32px; }
 
 .pricing-plan-name {
   font-family: 'Space Grotesk', sans-serif;
   font-size: var(--text-lg);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: var(--sp-2);
+  margin-bottom: 8px;
 }
 
-.pricing-price { display: flex; align-items: baseline; gap: var(--sp-2); }
+.pricing-price { display: flex; align-items: baseline; gap: 8px; }
 
 .pricing-amount {
   font-size: var(--text-2xl);
@@ -1020,22 +1020,22 @@ cite { font-style: normal; }
 .pricing-features {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
-  margin-bottom: var(--sp-7);
+  gap: 12px;
+  margin-bottom: 48px;
   flex: 1;
 }
 
 .pricing-features li {
   display: flex;
   align-items: center;
-  gap: var(--sp-3);
+  gap: 12px;
   font-size: var(--text-sm);
   color: var(--c-text-2);
 }
 
 .pricing-feature--premium { color: var(--c-text) !important; font-weight: 500; }
 
-.pricing-cta { text-align: center; justify-content: center; }
+.pricing-cta { text-align: center; justify-content: center; width: 100%; }
 
 @media (max-width: 640px) {
   .pricing-grid { grid-template-columns: 1fr; }
