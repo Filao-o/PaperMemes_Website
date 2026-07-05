@@ -46,6 +46,12 @@ export default function Hero() {
 
   return (
     <section className="hero" id="hero" aria-label="Introduction">
+      <div className="hero-bg" aria-hidden="true">
+        <div className="hero-bg-blob hero-bg-blob--1" />
+        <div className="hero-bg-blob hero-bg-blob--2" />
+        <div className="hero-bg-blob hero-bg-blob--3" />
+      </div>
+
       <div className="hero-grid">
         <div className="hero-left">
           <div className="hero-badge" role="status">
