@@ -378,6 +378,25 @@ cite { font-style: normal; }
   color: #ffffff;
   letter-spacing: -0.01em;
 }
+.hero-price-flicker {
+  animation: priceMove 9s linear infinite;
+  will-change: color;
+}
+@keyframes priceMove {
+  0%   { color: var(--c-green); }
+  6%   { color: var(--c-red);   }  /* dump rapide */
+  11%  { color: var(--c-green); }  /* rebond rapide */
+  26%  { color: var(--c-green); }  /* palier smooth */
+  40%  { color: var(--c-red);   }  /* déclin lent */
+  47%  { color: var(--c-red);   }
+  52%  { color: var(--c-green); }  /* pump sec */
+  68%  { color: var(--c-green); }  /* tenue */
+  74%  { color: var(--c-red);   }
+  79%  { color: var(--c-green); }  /* wick vert */
+  90%  { color: var(--c-green); }
+  95%  { color: var(--c-red);   }
+  100% { color: var(--c-green); }
+}
 
 .hero-desc {
   font-size: 18px;

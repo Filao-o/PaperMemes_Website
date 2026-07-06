@@ -7,7 +7,6 @@ const PLATFORMS = [
   { href: 'https://axiom.trade', src: '/logo/axiom.png', alt: 'Axiom', lg: false },
   { href: 'https://gmgn.ai', src: '/logo/gmgn.png', alt: 'GMGN', lg: true },
   { href: 'https://padre.gg', src: '/logo/padre.png', alt: 'Padre', lg: false },
-  { href: 'https://photon-sol.tinyastro.io', src: '/logo/photon.png', alt: 'Photon', lg: false },
 ];
 
 export default function Hero() {
@@ -59,7 +58,7 @@ export default function Hero() {
 
           <h1 className="hero-title">
             Deviens <strong>rentable</strong> avant de risquer ton capital.
-            <span className="hero-title-accent">Zéro risque, vrais prix.</span>
+            <span className="hero-title-accent">Zéro risque, vrais <span className="hero-price-flicker">prix</span>.</span>
           </h1>
 
           <p className="hero-desc">
@@ -71,9 +70,15 @@ export default function Hero() {
               Commencer gratuitement
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
-            <a href="#how" className="btn-pixel-ghost" onClick={e => scrollTo(e, '#how')}>
-              Comment ça marche
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            <a href="#install" className="btn-pixel-ghost" onClick={e => scrollTo(e, '#install')}>
+              <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+                <path fill="#fff" d="M24 16a8 8 0 108 8 8 8 0 00-8-8z"/>
+                <path fill="#EA4335" d="M24 4a20 20 0 0117.32 10H24a10 10 0 00-9.6 7.2L7 8.44A19.94 19.94 0 0124 4z"/>
+                <path fill="#FBBC05" d="M7 8.44l7.4 12.76A9.96 9.96 0 0014 24a9.96 9.96 0 001.4 5.09L8 42A20 20 0 017 8.44z"/>
+                <path fill="#34A853" d="M24 44a20 20 0 01-16-32l0 .01 7.4 16.08A10 10 0 0024 34a9.9 9.9 0 003.17-.52L20.5 43.7A20.1 20.1 0 0124 44z"/>
+                <path fill="#4285F4" d="M41.32 14H24a10 10 0 019.6 7.2A9.9 9.9 0 0134 24a10 10 0 01-6.83 9.48L20.5 43.7A20 20 0 0041.32 14z"/>
+              </svg>
+              Installer l&apos;extension Chrome
             </a>
           </div>
         </div>
