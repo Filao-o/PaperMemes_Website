@@ -62,7 +62,6 @@ export default function Nav() {
           </ul>
         </nav>
         <div className="nav-cta">
-          <Link href="/pro" className="btn btn-gold" onClick={closeMenu}>PaperMemes Pro</Link>
           <a href="/#install" className="btn btn-nav" onClick={e => scrollTo(e, '#install')}>
             Installer l&apos;extension PaperMemes
           </a>
@@ -87,7 +86,6 @@ export default function Nav() {
             <li><a href="/#how" onClick={e => scrollTo(e, '#how')}>Comment ça marche</a></li>
             <li><a href="/#why" onClick={e => scrollTo(e, '#why')}>Pourquoi PaperMemes</a></li>
             <li><a href="/#faq" onClick={e => scrollTo(e, '#faq')}>FAQ</a></li>
-            <li><Link href="/pro" className="btn btn-mobile btn-gold" onClick={closeMenu}>PaperMemes Pro</Link></li>
             <li><a href="/#install" className="btn btn-mobile" onClick={e => scrollTo(e, '#install')}>Installer l&apos;extension PaperMemes</a></li>
           </ul>
         </nav>
