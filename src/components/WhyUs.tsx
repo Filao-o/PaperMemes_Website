@@ -35,24 +35,6 @@ const CARDS = [
   },
 ];
 
-const TESTIMONIALS = [
-  {
-    quote: "« J'avais perdu 600 € sur mes premiers trades réels. Avec Papermemes, j'ai pu rejouer ces situations, comprendre mes erreurs et construire une vraie stratégie. »",
-    name: 'Lucas M.',
-    role: 'Passé au vrai trading après 3 mois',
-  },
-  {
-    quote: "« Mon win rate simulé était à 64% après 6 semaines. Quand je suis passé en réel, j'avais confiance — et les résultats ont suivi. »",
-    name: '0xDegen_K',
-    role: 'Trader memecoins — Solana',
-  },
-  {
-    quote: "« Le journal de trading m'a changé la vie. Je voyais exactement où je faisais des erreurs. Mon win rate est passé de 40% à 68%. »",
-    name: 'Sophie R.',
-    role: 'Débutante devenue profitable',
-  },
-];
-
 const CELL = 20;
 
 function buildPattern() {
@@ -126,35 +108,6 @@ export default function WhyUs() {
               <p>{card.desc}</p>
             </article>
           ))}
-        </div>
-
-        <div className="testimonials">
-          <h3 className="testimonials-title">Ce que disent nos traders</h3>
-          <div className="testimonials-grid">
-            {TESTIMONIALS.map((t, i) => (
-              <blockquote key={i} className="testimonial reveal">
-                <div className="t-stars" aria-label="5 étoiles sur 5">
-                  {Array.from({ length: 5 }).map((_, j) => (
-                    <svg key={j} width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                    </svg>
-                  ))}
-                </div>
-                <p>{t.quote}</p>
-                <footer className="t-author">
-                  <div className="t-avatar" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <cite className="t-name">{t.name}</cite>
-                    <span className="t-role">{t.role}</span>
-                  </div>
-                </footer>
-              </blockquote>
-            ))}
-          </div>
         </div>
       </div>
     </section>

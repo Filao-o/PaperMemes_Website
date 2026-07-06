@@ -12,10 +12,52 @@ const PLATFORMS = [
 export default function Hero() {
   const ctasRef = useRef<HTMLDivElement>(null);
   const tickerRef = useRef<HTMLDivElement>(null);
+  const priceRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const t = setTimeout(() => ctasRef.current?.classList.add('visible'), 450);
     return () => clearTimeout(t);
+  }, []);
+
+  // "prix" : couleur qui oscille rouge/vert comme un actif en direct
+  useEffect(() => {
+    const el = priceRef.current;
+    if (!el) return;
+    let raf = 0;
+    let last = performance.now();
+    let value = 1;      // 1 = vert, 0 = rouge
+    let target = 1;
+    let speed = 1.5;    // unités/seconde
+    let holdUntil = 0;
+
+    const pick = () => {
+      target = Math.random() < 0.5 ? 0 : 1;
+      speed = 0.8 + Math.random() * Math.random() * 7; // parfois lent, parfois vif
+      holdUntil = 0;
+    };
+    const apply = (v: number) => {
+      const hue = v * 152;               // 0 rouge -> 152 vert
+      const light = 45 + (1 - v) * 18;
+      el.style.color = `hsl(${hue}, 100%, ${light}%)`;
+      el.style.textShadow = `0 0 14px hsla(${hue}, 100%, ${light}%, 0.5)`;
+    };
+    const step = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      if (Math.abs(value - target) < 0.01) {
+        value = target;
+        if (!holdUntil) holdUntil = now + 250 + Math.random() * 1600;
+        else if (now >= holdUntil) pick();
+      } else {
+        const dir = Math.sign(target - value);
+        value += dir * speed * dt;
+        if ((dir > 0 && value > target) || (dir < 0 && value < target)) value = target;
+      }
+      apply(value);
+      raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   useEffect(() => {
@@ -58,7 +100,7 @@ export default function Hero() {
 
           <h1 className="hero-title">
             Deviens <strong>rentable</strong> avant de risquer ton capital.
-            <span className="hero-title-accent">Zéro risque, vrais <span className="hero-price-flicker">prix</span>.</span>
+            <span className="hero-title-accent">Zéro risque, vrais <span ref={priceRef} className="hero-price-flicker">prix</span>.</span>
           </h1>
 
           <p className="hero-desc">
