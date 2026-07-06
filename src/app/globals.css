@@ -923,22 +923,25 @@ cite { font-style: normal; }
 .tcard {
   flex: 0 0 340px;
   width: 340px;
-  background: #ffffff;
-  color: #111111;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: var(--c-text);
   border-radius: var(--r-lg);
   padding: 26px;
   display: flex;
   flex-direction: column;
   gap: 18px;
   min-height: 220px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
-.tcard-quote { color: #d4d4d4; flex-shrink: 0; }
+.tcard-quote { color: rgba(255,255,255,0.22); flex-shrink: 0; }
 
 .tcard-text {
   font-size: 16px;
-  color: #1a1a1a;
+  color: var(--c-text);
   line-height: 1.6;
   flex: 1;
 }
@@ -964,11 +967,11 @@ cite { font-style: normal; }
   font-style: normal;
   font-size: 14px;
   font-weight: 700;
-  color: #000000;
+  color: var(--c-text);
 }
 .tcard-handle {
   font-size: 13px;
-  color: #777777;
+  color: var(--c-text-3);
 }
 
 @media (max-width: 640px) {
