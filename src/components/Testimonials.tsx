@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 type Review = { text: string; name: string; handle: string };
 
@@ -37,7 +37,7 @@ const REVIEWS: Review[] = [
   { text: "Je ne passe plus un trade réel sans avoir validé le setup en démo avant. Game changer.", name: 'Lina S.', handle: '@lina_s' },
 ];
 
-const AVATAR_COLORS = ['#00e676', '#ff4040', '#4285F4', '#FBBC05', '#a855f7', '#06b6d4', '#f97316', '#ec4899'];
+const AVATAR_COLORS = ['#16a34a', '#dc2626', '#2563eb', '#d97706', '#9333ea', '#0891b2', '#ea580c', '#db2777'];
 
 function initials(name: string) {
   return name.split(' ').map(p => p[0]).join('').slice(0, 2).toUpperCase();
@@ -49,98 +49,58 @@ function colorFor(name: string) {
 }
 
 export default function Testimonials() {
-  const [perView, setPerView] = useState(3);
-  const [page, setPage] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  const pages = Math.ceil(REVIEWS.length / perView);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
 
   useEffect(() => {
-    const calc = () => {
-      const w = window.innerWidth;
-      setPerView(w < 640 ? 1 : w < 1024 ? 2 : 3);
+    const track = trackRef.current;
+    if (!track) return;
+    let pos = 0;
+    let raf = 0;
+    let last = performance.now();
+    const SPEED = 45; // px/seconde
+
+    const step = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      if (!pausedRef.current) {
+        pos -= SPEED * dt;
+        const half = track.scrollWidth / 2;
+        if (half > 0 && pos <= -half) pos += half;
+        track.style.transform = `translateX(${pos}px)`;
+      }
+      raf = requestAnimationFrame(step);
     };
-    calc();
-    window.addEventListener('resize', calc);
-    return () => window.removeEventListener('resize', calc);
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
-  // clamp page when perView changes
-  useEffect(() => {
-    setPage(p => Math.min(p, Math.ceil(REVIEWS.length / perView) - 1));
-  }, [perView]);
-
-  // autoplay (ticker)
-  useEffect(() => {
-    if (paused) return;
-    const id = setInterval(() => {
-      setPage(p => (p + 1) % pages);
-    }, 4000);
-    return () => clearInterval(id);
-  }, [paused, pages]);
-
-  const go = (p: number) => setPage((p + pages) % pages);
+  const cards = [...REVIEWS, ...REVIEWS];
 
   return (
-    <section className="section testimonials-section" id="avis" aria-labelledby="avis-title">
-      <div className="container">
-        <header className="section-header">
-          <p className="section-tag">Témoignages</p>
-          <h2 id="avis-title" className="section-title">
-            Ils s&apos;entraînent déjà <span className="text-white-dim">sur Papermemes</span>
-          </h2>
-        </header>
-
-        <div
-          className="tcarousel"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          <button className="tcarousel-btn tcarousel-btn--prev" onClick={() => go(page - 1)} aria-label="Avis précédents">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
-          </button>
-
-          <div className="tcarousel-viewport">
-            <div className="tcarousel-track" style={{ transform: `translateX(-${page * 100}%)` }}>
-              {REVIEWS.map((r, i) => (
-                <article
-                  key={i}
-                  className="tcard"
-                  style={{ flex: `0 0 calc((100% - ${(perView - 1) * 20}px) / ${perView})` }}
-                >
-                  <svg className="tcard-quote" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M9.5 6C6.5 6 4 8.5 4 11.5V18h6v-6H7c0-1.7 1.3-3 3-3V6zm10 0c-3 0-5.5 2.5-5.5 5.5V18h6v-6h-3c0-1.7 1.3-3 3-3V6z" />
-                  </svg>
-                  <p className="tcard-text">{r.text}</p>
-                  <footer className="tcard-author">
-                    <span className="tcard-avatar" style={{ background: colorFor(r.name) }} aria-hidden="true">
-                      {initials(r.name)}
-                    </span>
-                    <span className="tcard-meta">
-                      <cite className="tcard-name">{r.name}</cite>
-                      <span className="tcard-handle">{r.handle}</span>
-                    </span>
-                  </footer>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <button className="tcarousel-btn tcarousel-btn--next" onClick={() => go(page + 1)} aria-label="Avis suivants">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
-          </button>
-        </div>
-
-        <div className="tcarousel-dots" role="tablist" aria-label="Pages d'avis">
-          {Array.from({ length: pages }).map((_, i) => (
-            <button
-              key={i}
-              className={`tcarousel-dot${i === page ? ' active' : ''}`}
-              onClick={() => setPage(i)}
-              aria-label={`Page ${i + 1}`}
-              aria-selected={i === page}
-              role="tab"
-            />
+    <section className="testimonials-section" id="avis" aria-label="Témoignages">
+      <div
+        className="tmarquee"
+        onMouseEnter={() => { pausedRef.current = true; }}
+        onMouseLeave={() => { pausedRef.current = false; }}
+      >
+        <div ref={trackRef} className="tmarquee-track">
+          {cards.map((r, i) => (
+            <article key={i} className="tcard" aria-hidden={i >= REVIEWS.length ? 'true' : undefined}>
+              <svg className="tcard-quote" width="36" height="36" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M9.5 6C6.5 6 4 8.5 4 11.5V18h6v-6H7c0-1.7 1.3-3 3-3V6zm10 0c-3 0-5.5 2.5-5.5 5.5V18h6v-6h-3c0-1.7 1.3-3 3-3V6z" />
+              </svg>
+              <p className="tcard-text">{r.text}</p>
+              <footer className="tcard-author">
+                <span className="tcard-avatar" style={{ background: colorFor(r.name) }} aria-hidden="true">
+                  {initials(r.name)}
+                </span>
+                <span className="tcard-meta">
+                  <cite className="tcard-name">{r.name}</cite>
+                  <span className="tcard-handle">{r.handle}</span>
+                </span>
+              </footer>
+            </article>
           ))}
         </div>
       </div>
