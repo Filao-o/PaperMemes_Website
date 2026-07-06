@@ -870,6 +870,7 @@ cite { font-style: normal; }
   color: #ffffff;
   flex-shrink: 0;
 }
+.tcard-avatar--img { object-fit: cover; }
 .tcard-meta { display: flex; flex-direction: column; }
 .tcard-name {
   font-style: normal;

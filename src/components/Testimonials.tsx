@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 type Review = { text: string; name: string; handle: string };
 
@@ -48,6 +49,27 @@ function colorFor(name: string) {
   return AVATAR_COLORS[h % AVATAR_COLORS.length];
 }
 
+function Avatar({ n, name }: { n: number; name: string }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <span className="tcard-avatar" style={{ background: colorFor(name) }} aria-hidden="true">
+        {initials(name)}
+      </span>
+    );
+  }
+  return (
+    <Image
+      className="tcard-avatar tcard-avatar--img"
+      src={`/reviewprofile/${n}.jpg`}
+      alt=""
+      width={40}
+      height={40}
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 export default function Testimonials() {
   const trackRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
@@ -92,9 +114,7 @@ export default function Testimonials() {
               </svg>
               <p className="tcard-text">{r.text}</p>
               <footer className="tcard-author">
-                <span className="tcard-avatar" style={{ background: colorFor(r.name) }} aria-hidden="true">
-                  {initials(r.name)}
-                </span>
+                <Avatar n={(i % REVIEWS.length) + 1} name={r.name} />
                 <span className="tcard-meta">
                   <cite className="tcard-name">{r.name}</cite>
                   <span className="tcard-handle">{r.handle}</span>
