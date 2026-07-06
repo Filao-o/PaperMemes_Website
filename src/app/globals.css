@@ -290,7 +290,7 @@ cite { font-style: normal; }
 .hero {
   position: relative;
   background: var(--c-bg);
-  padding: 100px 24px 48px;
+  padding: 100px 24px 0;
   overflow: hidden;
   isolation: isolate;
 }
@@ -304,6 +304,8 @@ cite { font-style: normal; }
   background-image: url('/image/hero-bg.jpg');
   background-size: cover;
   background-position: center;
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
 }
 .hero-bg-overlay {
   position: absolute;
@@ -350,9 +352,12 @@ cite { font-style: normal; }
   background: var(--c-green);
   border-radius: 50%;
   box-shadow: 0 0 6px var(--c-green);
-  animation: pulse 2s ease infinite;
+  animation: badgeGlow 2.6s ease-in-out infinite;
 }
-@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+@keyframes badgeGlow {
+  0%, 100% { box-shadow: 0 0 4px var(--c-green); opacity: 0.85; }
+  50%      { box-shadow: 0 0 10px 2px var(--c-green); opacity: 1; }
+}
 
 .hero-title {
   font-family: 'Space Grotesk', sans-serif;
@@ -447,11 +452,13 @@ cite { font-style: normal; }
   width: 100%;
   background: var(--c-surface);
   border: 1px solid var(--c-border-md);
-  border-radius: var(--r-lg);
+  border-top-left-radius: var(--r-lg);
+  border-top-right-radius: var(--r-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
 }
 .hero-visual-placeholder span {
   font-size: 14px;
@@ -507,7 +514,7 @@ cite { font-style: normal; }
    SUITE SECTION
    ============================================================ */
 .suite {
-  background: #080808;
+  background: transparent;
   position: relative;
   overflow: hidden;
 }

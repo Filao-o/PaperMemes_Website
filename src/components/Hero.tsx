@@ -54,7 +54,7 @@ export default function Hero() {
         <div className="hero-left">
           <div className="hero-badge" role="status">
             <span className="badge-dot" aria-hidden="true" />
-            Paper Trading · Zéro risque · Prix réels
+            PaperMemes • L&apos;extension n°1 Demo MemesCoins
           </div>
 
           <h1 className="hero-title">
@@ -79,11 +79,6 @@ export default function Hero() {
         </div>
 
         <div className="hero-visual">
-          {/* [TODO] Remplacer par le vrai mockup du dashboard une fois prêt */}
-          <div className="hero-visual-placeholder">
-            <span>Dashboard preview — à venir</span>
-          </div>
-
           <div className="hero-ticker-section">
             <span className="hero-bottom-label">Integrates to your favorite trading platforms</span>
             <div className="hero-bottom-ticker-wrap">
@@ -112,6 +107,11 @@ export default function Hero() {
                 )}
               </div>
             </div>
+          </div>
+
+          {/* [TODO] Remplacer par le vrai mockup du dashboard une fois prêt */}
+          <div className="hero-visual-placeholder">
+            <span>Dashboard preview — à venir</span>
           </div>
         </div>
       </div>
