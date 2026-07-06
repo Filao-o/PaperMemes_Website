@@ -35,11 +35,21 @@ export default function Hero() {
       speed = 0.8 + Math.random() * Math.random() * 7; // parfois lent, parfois vif
       holdUntil = 0;
     };
+    const green = [0, 230, 118];
+    const red = [255, 64, 64];
+    const white = [255, 255, 255];
     const apply = (v: number) => {
-      const hue = v * 152;               // 0 rouge -> 152 vert
-      const light = 45 + (1 - v) * 18;
-      el.style.color = `hsl(${hue}, 100%, ${light}%)`;
-      el.style.textShadow = `0 0 14px hsla(${hue}, 100%, ${light}%, 0.5)`;
+      // v: 1 = vert, 0.5 = blanc (transition), 0 = rouge — jamais de jaune
+      let c: number[];
+      if (v >= 0.5) {
+        const t = (v - 0.5) / 0.5;
+        c = white.map((w, i) => Math.round(w + (green[i] - w) * t));
+      } else {
+        const t = (0.5 - v) / 0.5;
+        c = white.map((w, i) => Math.round(w + (red[i] - w) * t));
+      }
+      el.style.color = `rgb(${c[0]}, ${c[1]}, ${c[2]})`;
+      el.style.textShadow = `0 0 14px rgba(${c[0]}, ${c[1]}, ${c[2]}, 0.45)`;
     };
     const step = (now: number) => {
       const dt = Math.min((now - last) / 1000, 0.05);

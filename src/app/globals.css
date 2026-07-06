@@ -537,11 +537,12 @@ cite { font-style: normal; }
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--c-border);
   overflow: hidden;
-  transition: border-color var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+  transition: border-color 0.5s var(--ease), transform 0.5s var(--ease), background 0.5s var(--ease);
 }
 .feat-card:hover {
   border-color: var(--c-border-md);
-  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-4px);
 }
 
 .feat-face {
@@ -552,9 +553,12 @@ cite { font-style: normal; }
   justify-content: center;
   padding: 24px;
   text-align: center;
-  transition: opacity var(--dur-base) var(--ease);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
 }
-.feat-card:hover .feat-face { opacity: 0; }
+.feat-card:hover .feat-face {
+  opacity: 0;
+  transform: scale(0.94);
+}
 
 .feat-name {
   font-family: 'Space Grotesk', sans-serif;
@@ -576,7 +580,7 @@ cite { font-style: normal; }
   font-size: 12px;
   font-weight: 600;
   color: var(--c-text-2);
-  transition: opacity var(--dur-base) var(--ease);
+  transition: opacity 0.4s var(--ease);
   z-index: 2;
 }
 .feat-card:hover .feat-tag { opacity: 0; }
@@ -585,19 +589,42 @@ cite { font-style: normal; }
   position: absolute;
   inset: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 18px;
   padding: 26px;
   text-align: center;
   opacity: 0;
-  transition: opacity var(--dur-base) var(--ease);
+  transform: translateY(10px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
   background: rgba(255, 255, 255, 0.03);
 }
-.feat-card:hover .feat-desc { opacity: 1; }
+.feat-card:hover .feat-desc {
+  opacity: 1;
+  transform: translateY(0);
+}
 .feat-desc p {
   font-size: var(--text-sm);
   color: var(--c-text-2);
   line-height: 1.6;
+}
+
+.feat-wiki-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text);
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--c-border-md);
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.feat-wiki-link:hover {
+  color: var(--c-green);
+  border-color: var(--c-green);
 }
 
 .suite-wiki {
