@@ -308,12 +308,9 @@ cite { font-style: normal; }
 .hero-bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.92) 0%,
-    rgba(0,0,0,0.75) 45%,
-    rgba(0,0,0,0.45) 100%
-  );
+  background:
+    radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.8) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 100%);
 }
 
 .hero-grid {
@@ -321,7 +318,7 @@ cite { font-style: normal; }
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 48px;
   max-width: 1440px;
   margin: 0 auto;
@@ -330,8 +327,8 @@ cite { font-style: normal; }
 .hero-left {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
   gap: 24px;
 }
 
@@ -385,6 +382,7 @@ cite { font-style: normal; }
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  justify-content: center;
   opacity: 0;
   transform: translateY(32px);
   transition: opacity 1000ms ease, transform 1000ms ease;
@@ -1282,7 +1280,7 @@ cite { font-style: normal; }
   .nav-links, .btn-nav { display: none; }
   .nav-burger { display: flex; }
   .hero { padding: 88px 20px 40px; }
-  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .hero-ctas { flex-direction: column; align-items: center; }
   .hero-title { gap: 8px; }
   .why-grid { grid-template-columns: 1fr; }
   .footer-top { flex-direction: column; gap: var(--sp-6); }
