@@ -374,9 +374,8 @@ cite { font-style: normal; }
 .hero-title-accent {
   display: block;
   margin-top: 14px;
-  font-size: 0.42em;
   font-weight: 700;
-  color: var(--c-green);
+  color: #ffffff;
   letter-spacing: -0.01em;
 }
 
