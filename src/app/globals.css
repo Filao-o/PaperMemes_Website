@@ -383,19 +383,19 @@ cite { font-style: normal; }
   will-change: color;
 }
 @keyframes priceMove {
-  0%   { color: var(--c-green); }
-  6%   { color: var(--c-red);   }  /* dump rapide */
-  11%  { color: var(--c-green); }  /* rebond rapide */
-  26%  { color: var(--c-green); }  /* palier smooth */
-  40%  { color: var(--c-red);   }  /* déclin lent */
-  47%  { color: var(--c-red);   }
-  52%  { color: var(--c-green); }  /* pump sec */
-  68%  { color: var(--c-green); }  /* tenue */
-  74%  { color: var(--c-red);   }
-  79%  { color: var(--c-green); }  /* wick vert */
-  90%  { color: var(--c-green); }
-  95%  { color: var(--c-red);   }
-  100% { color: var(--c-green); }
+  0%   { color: #00e676; text-shadow: 0 0 12px rgba(0,230,118,0.5); }
+  6%   { color: #ff4040; text-shadow: 0 0 12px rgba(255,64,64,0.5); }  /* dump rapide */
+  11%  { color: #00e676; text-shadow: 0 0 12px rgba(0,230,118,0.5); }  /* rebond rapide */
+  26%  { color: #00e676; text-shadow: 0 0 12px rgba(0,230,118,0.5); }  /* palier smooth */
+  40%  { color: #ff4040; text-shadow: 0 0 12px rgba(255,64,64,0.5); }  /* déclin lent */
+  47%  { color: #ff4040; text-shadow: 0 0 12px rgba(255,64,64,0.5); }
+  52%  { color: #00e676; text-shadow: 0 0 12px rgba(0,230,118,0.5); }  /* pump sec */
+  68%  { color: #00e676; text-shadow: 0 0 12px rgba(0,230,118,0.5); }  /* tenue */
+  74%  { color: #ff4040; text-shadow: 0 0 12px rgba(255,64,64,0.5); }
+  79%  { color: #00e676; text-shadow: 0 0 12px rgba(0,230,118,0.5); }  /* wick vert */
+  90%  { color: #00e676; text-shadow: 0 0 12px rgba(0,230,118,0.5); }
+  95%  { color: #ff4040; text-shadow: 0 0 12px rgba(255,64,64,0.5); }
+  100% { color: #00e676; text-shadow: 0 0 12px rgba(0,230,118,0.5); }
 }
 
 .hero-desc {
