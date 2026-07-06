@@ -28,13 +28,15 @@ export default function Nav() {
   const closeMenu = () => setMenuOpen(false);
 
   const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
     closeMenu();
     const target = document.querySelector(id);
     if (target) {
+      // section présente sur la page courante → scroll doux
+      e.preventDefault();
       const top = target.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top, behavior: 'smooth' });
     }
+    // sinon : on laisse le lien /#id naviguer vers l'accueil
   };
 
   return (
@@ -53,16 +55,18 @@ export default function Nav() {
         </Link>
         <nav aria-label="Main navigation">
           <ul className="nav-links">
-            <li><a href="#suite" onClick={e => scrollTo(e, '#suite')}>Features</a></li>
-            <li><a href="#how" onClick={e => scrollTo(e, '#how')}>How it works</a></li>
-            <li><a href="#why" onClick={e => scrollTo(e, '#why')}>Why us</a></li>
-            <li><a href="#pricing" onClick={e => scrollTo(e, '#pricing')}>Pricing</a></li>
-            <li><a href="#faq" onClick={e => scrollTo(e, '#faq')}>FAQ</a></li>
+            <li><a href="/#suite" onClick={e => scrollTo(e, '#suite')}>Fonctionnalités</a></li>
+            <li><a href="/#how" onClick={e => scrollTo(e, '#how')}>Comment ça marche</a></li>
+            <li><a href="/#why" onClick={e => scrollTo(e, '#why')}>Pourquoi PaperMemes</a></li>
+            <li><a href="/#faq" onClick={e => scrollTo(e, '#faq')}>FAQ</a></li>
           </ul>
         </nav>
-        <a href="#install" className="btn btn-nav" onClick={e => scrollTo(e, '#install')}>
-          Install extension
-        </a>
+        <div className="nav-cta">
+          <Link href="/pro" className="btn btn-gold" onClick={closeMenu}>PaperMemes Pro</Link>
+          <a href="/#install" className="btn btn-nav" onClick={e => scrollTo(e, '#install')}>
+            Installer l&apos;extension PaperMemes
+          </a>
+        </div>
         <button
           className="nav-burger"
           onClick={() => setMenuOpen(o => !o)}
@@ -79,12 +83,12 @@ export default function Nav() {
       <div id="mobileMenu" className={`mobile-menu${menuOpen ? ' open' : ''}`} role="dialog" aria-label="Mobile menu">
         <nav>
           <ul>
-            <li><a href="#suite" onClick={e => scrollTo(e, '#suite')}>Features</a></li>
-            <li><a href="#how" onClick={e => scrollTo(e, '#how')}>How it works</a></li>
-            <li><a href="#why" onClick={e => scrollTo(e, '#why')}>Why us</a></li>
-            <li><a href="#pricing" onClick={e => scrollTo(e, '#pricing')}>Pricing</a></li>
-            <li><a href="#faq" onClick={e => scrollTo(e, '#faq')}>FAQ</a></li>
-            <li><a href="#install" className="btn btn-mobile" onClick={e => scrollTo(e, '#install')}>Install extension</a></li>
+            <li><a href="/#suite" onClick={e => scrollTo(e, '#suite')}>Fonctionnalités</a></li>
+            <li><a href="/#how" onClick={e => scrollTo(e, '#how')}>Comment ça marche</a></li>
+            <li><a href="/#why" onClick={e => scrollTo(e, '#why')}>Pourquoi PaperMemes</a></li>
+            <li><a href="/#faq" onClick={e => scrollTo(e, '#faq')}>FAQ</a></li>
+            <li><Link href="/pro" className="btn btn-mobile btn-gold" onClick={closeMenu}>PaperMemes Pro</Link></li>
+            <li><a href="/#install" className="btn btn-mobile" onClick={e => scrollTo(e, '#install')}>Installer l&apos;extension PaperMemes</a></li>
           </ul>
         </nav>
       </div>

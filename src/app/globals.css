@@ -166,9 +166,30 @@ cite { font-style: normal; }
   color: #fff;
   padding: 10px var(--sp-5);
   font-size: var(--text-sm);
-  margin-left: auto;
 }
 .btn-nav:hover { background: #222; transform: translateY(-1px); }
+
+.btn-gold {
+  background: linear-gradient(135deg, #f7d774 0%, #e2a938 48%, #c4881f 100%);
+  color: #211500;
+  padding: 10px var(--sp-5);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  box-shadow: 0 2px 12px rgba(226, 169, 56, 0.28), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+.btn-gold:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(226, 169, 56, 0.42), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+.nav-cta {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
 
 .btn-mobile {
   display: block;
@@ -189,7 +210,7 @@ cite { font-style: normal; }
   position: sticky;
   top: 20px;
   z-index: 100;
-  max-width: 860px;
+  max-width: 1080px;
   isolation: isolate;
   margin: 20px auto 0;
   border-radius: 12px;
@@ -553,12 +574,9 @@ cite { font-style: normal; }
   justify-content: center;
   padding: 24px;
   text-align: center;
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  transition: opacity 0.6s ease;
 }
-.feat-card:hover .feat-face {
-  opacity: 0;
-  transform: scale(0.94);
-}
+.feat-card:hover .feat-face { opacity: 0; }
 
 .feat-name {
   font-family: 'Space Grotesk', sans-serif;
@@ -596,14 +614,10 @@ cite { font-style: normal; }
   padding: 26px;
   text-align: center;
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  transition: opacity 0.6s ease;
   background: rgba(255, 255, 255, 0.03);
 }
-.feat-card:hover .feat-desc {
-  opacity: 1;
-  transform: translateY(0);
-}
+.feat-card:hover .feat-desc { opacity: 1; }
 .feat-desc p {
   font-size: var(--text-sm);
   color: var(--c-text-2);
@@ -1243,6 +1257,54 @@ cite { font-style: normal; }
 .form-group textarea { resize: vertical; min-height: 120px; }
 
 /* ============================================================
+   PRO PAGE
+   ============================================================ */
+.pro-page { padding-top: 64px; }
+.pro-hero {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 0 8px;
+}
+.pro-hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.pro-hero-desc {
+  font-size: var(--text-md);
+  color: var(--c-text-2);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   WIKI PAGE
+   ============================================================ */
+.wiki-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 32px 0 16px;
+}
+.wiki-toc a {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--c-text-2);
+  text-decoration: none;
+  padding: 8px 14px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-full);
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.wiki-toc a:hover { color: var(--c-text); border-color: var(--c-border-md); }
+
+.wiki-rubric { scroll-margin-top: 100px; }
+.wiki-rubric h2 { scroll-margin-top: 100px; }
+
+/* ============================================================
    REVEAL ANIMATION
    ============================================================ */
 .reveal {
@@ -1264,7 +1326,7 @@ cite { font-style: normal; }
 
 @media (max-width: 768px) {
   .section { padding: var(--sp-7) 0; }
-  .nav-links, .btn-nav { display: none; }
+  .nav-links, .nav-cta { display: none; }
   .nav-burger { display: flex; }
   .hero { padding: 88px 20px 40px; }
   .hero-ctas { flex-direction: column; align-items: center; }

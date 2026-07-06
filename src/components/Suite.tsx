@@ -1,46 +1,55 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 const FEATURES = [
   {
     name: 'Wallet SOL',
     tag: 'Wallet',
+    wiki: 'wallet',
     desc: "Un solde virtuel en SOL dès le lancement. Toggle SOL/USD, reset à tout moment — aucun wallet réel requis.",
   },
   {
     name: 'TP / SL',
     tag: 'Exécution',
+    wiki: 'tp-sl',
     desc: "Presets Take Profit et Stop Loss de +10% à +100%. Tes ordres s'exécutent automatiquement au prix cible.",
   },
   {
     name: 'Rugcheck',
     tag: 'Sécurité',
+    wiki: 'rugcheck',
     desc: "Score de risque, top holders et liquidité analysés avant chaque trade. Tu entres avec les yeux ouverts.",
   },
   {
     name: 'Analytics',
     tag: 'Stats',
+    wiki: 'analytics',
     desc: "PnL total, win rate, meilleur trade, nombre de positions — toutes tes stats clés en un coup d'œil.",
   },
   {
     name: 'Historique',
     tag: 'Journal',
+    wiki: 'historique',
     desc: "Filtre tes trades par All, Active, Gain ou Loss. Retrouve tes meilleures et pires positions instantanément.",
   },
   {
     name: 'Calendrier',
     tag: 'Performance',
+    wiki: 'calendrier',
     desc: "Tes gains et pertes jour par jour, en vue hebdo ou mensuelle. Repère tes séquences et tes drawdowns.",
   },
   {
     name: 'Widget',
     tag: 'Interface',
+    wiki: 'widget',
     desc: "Widget détachable en trois blocs : wallet SOL, infos du token, et gestion des positions TP/SL.",
   },
   {
     name: 'Suivi des entrées',
     tag: 'Tracking',
+    wiki: 'suivi',
     desc: "Chaque entrée sur une position avec date, heure, SOL investi et SOL retiré. Ta traçabilité complète.",
   },
 ];
@@ -86,22 +95,20 @@ export default function Suite() {
               <span className="feat-tag">{f.tag}</span>
               <div className="feat-desc">
                 <p>{f.desc}</p>
-                {/* [TODO] Remplacer par le vrai lien du wiki */}
-                <a href="#" className="feat-wiki-link">
+                <Link href={`/wiki#${f.wiki}`} className="feat-wiki-link">
                   Voir le wiki
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
+                </Link>
               </div>
             </article>
           ))}
         </div>
 
         <div className="suite-wiki">
-          {/* [TODO] Remplacer par le vrai lien du wiki */}
-          <a href="#" className="btn btn-ghost btn-lg">
+          <Link href="/wiki" className="btn btn-ghost btn-lg">
             Voir le wiki
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

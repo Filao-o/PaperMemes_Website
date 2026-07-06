@@ -42,16 +42,16 @@ export default function Footer() {
 
           <nav className="footer-links" aria-label="Liens du pied de page">
             <div className="footer-col">
-              <h4>Produit</h4>
-              <a href="#suite">Fonctionnalités</a>
-              <a href="#how">Comment ça marche</a>
-              <a href="#install">Installer</a>
+              <h4>Extension</h4>
+              <Link href="/#suite">Fonctionnalités</Link>
+              <Link href="/wiki#installer">Installer PaperMemes</Link>
+              <Link href="/pro">Avantage Pro</Link>
             </div>
             <div className="footer-col">
               <h4>Ressources</h4>
-              <a href="#">Documentation</a>
-              <a href="#">Changelog</a>
-              <a href="#">GitHub</a>
+              <Link href="/wiki">Wiki</Link>
+              <Link href="/contact">Bugs / Idées</Link>
+              <a href="#">Dashboard Pro</a>
             </div>
             <div className="footer-col">
               <h4>Légal</h4>
