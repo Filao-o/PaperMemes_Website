@@ -319,7 +319,7 @@ cite { font-style: normal; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
+  gap: 55px;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -329,7 +329,7 @@ cite { font-style: normal; }
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 24px;
+  gap: 28px;
 }
 
 .hero-badge {
@@ -366,13 +366,21 @@ cite { font-style: normal; }
 .hero-title strong {
   font-weight: 800;
 }
+.hero-title-accent {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.42em;
+  font-weight: 700;
+  color: var(--c-green);
+  letter-spacing: -0.01em;
+}
 
 .hero-desc {
   font-size: 18px;
   font-weight: 300;
   color: rgba(255,255,255,0.72);
   line-height: 1.75;
-  max-width: 520px;
+  max-width: 640px;
   animation: fadeUp 0.6s 0.16s var(--ease) both;
 }
 

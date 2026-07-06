@@ -58,7 +58,8 @@ export default function Hero() {
           </div>
 
           <h1 className="hero-title">
-            Entraînez-vous en <strong>demo</strong> dans des conditions <strong>réels</strong>.
+            Deviens <strong>rentable</strong> avant de risquer ton capital.
+            <span className="hero-title-accent">Zéro risque, vrais prix.</span>
           </h1>
 
           <p className="hero-desc">
