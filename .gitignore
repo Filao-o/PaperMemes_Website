@@ -8,6 +8,9 @@ out/
 # Next.js auto-generated
 next-env.d.ts
 
+# TypeScript build cache
+*.tsbuildinfo
+
 # Environment
 .env
 .env.local
