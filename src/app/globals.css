@@ -1347,3 +1347,401 @@ cite { font-style: normal; }
   .container { padding: 0 var(--sp-4); }
   .hero-title { font-size: clamp(2rem, 10vw, var(--text-2xl)); }
 }
+
+/* ============================================================
+   AUTH MODAL
+   ============================================================ */
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.auth-modal {
+  position: relative;
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 36px 36px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+}
+
+.auth-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaaaaa;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.auth-close:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+.auth-tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 28px;
+}
+.auth-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.auth-tab.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.auth-tab:hover:not(.active) { color: #ccc; }
+
+.auth-header {
+  margin-bottom: 24px;
+}
+.auth-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 6px;
+}
+.auth-header p {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+}
+
+.auth-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #fff;
+  color: #111;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+.btn-google:hover { background: #f1f1f1; }
+.btn-google:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #444;
+  font-size: 12px;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.auth-field span {
+  font-size: 13px;
+  font-weight: 500;
+  color: #aaa;
+}
+.auth-field input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.auth-field input::placeholder { color: #555; }
+.auth-field input:focus { border-color: rgba(255, 255, 255, 0.3); }
+
+.auth-error {
+  font-size: 13px;
+  color: #ff6b6b;
+  background: rgba(255, 64, 64, 0.1);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 0;
+}
+.auth-info {
+  font-size: 13px;
+  color: #00e676;
+  background: rgba(0, 230, 118, 0.1);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 0;
+}
+
+.auth-submit {
+  width: 100%;
+  padding: 13px;
+  font-size: 15px;
+  border-radius: 12px;
+  margin-top: 4px;
+}
+.auth-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.auth-forgot {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+.auth-forgot:hover { color: #ccc; }
+
+/* ============================================================
+   NAV — AUTH STATE
+   ============================================================ */
+.btn-ghost-nav {
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: var(--c-nav-text);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--r-full);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.btn-ghost-nav:hover { background: rgba(0, 0, 0, 0.05); }
+
+.nav-avatar-skeleton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.nav-user {
+  position: relative;
+}
+.nav-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  background: #e8e8e8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  transition: border-color 0.2s;
+}
+.nav-avatar:hover { border-color: rgba(0, 0, 0, 0.25); }
+.nav-avatar-img { width: 36px; height: 36px; object-fit: cover; }
+.nav-avatar-initials {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  line-height: 1;
+}
+
+.nav-user-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 14px;
+  min-width: 200px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  z-index: 200;
+}
+.nav-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px 10px;
+}
+.nav-user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+}
+.nav-user-email {
+  font-size: 12px;
+  color: #888;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.nav-user-sep {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  margin: 4px 0;
+}
+.nav-user-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 9px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #222;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.nav-user-item:hover { background: rgba(0, 0, 0, 0.05); }
+.nav-user-logout { color: #e03030; }
+.nav-user-logout:hover { background: rgba(224, 48, 48, 0.07); }
+
+.mobile-auth-ghost {
+  background: none;
+  border: none;
+  color: var(--c-nav-muted);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 0;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+/* ============================================================
+   ACCOUNT PAGE
+   ============================================================ */
+.account-page {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: flex-start;
+  padding: 80px 0 120px;
+}
+.account-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-xl);
+  padding: 48px;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+.account-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--c-surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.account-avatar-img { width: 80px; height: 80px; object-fit: cover; }
+.account-avatar-initials {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--c-text);
+}
+.account-info h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0 0 4px;
+}
+.account-email {
+  font-size: 14px;
+  color: var(--c-text-2);
+  margin: 0;
+}
+.account-warning {
+  font-size: 12px;
+  color: #ff9900;
+  margin: 6px 0 0;
+}
+.account-meta {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  justify-content: center;
+  padding: 20px 0;
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+}
+.account-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+.account-meta-label {
+  font-size: 12px;
+  color: var(--c-text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.account-meta-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--c-text);
+}
+.account-plan-free {
+  color: var(--c-text-2);
+}
+.account-logout {
+  color: var(--c-text-2);
+  border-color: var(--c-border);
+  font-size: 14px;
+}

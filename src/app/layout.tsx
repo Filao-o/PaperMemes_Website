@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import Providers from '@/components/Providers';
 
 export const metadata: Metadata = {
   title: 'Papermemes — Paper trading de memecoins sans risque',
@@ -12,9 +13,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <body suppressHydrationWarning>
-        <Nav />
-        {children}
-        <Footer />
+        <Providers>
+          <Nav />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
