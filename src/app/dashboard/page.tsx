@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import { getUserDocument, computeStats, formatSOL, formatPct, formatDate, formatMC } from '@/lib/firestore';
 import type { UserDocument, DashboardStats, Trade } from '@/types/firestore';
+import { trackDashboardViewed } from '@/lib/analytics';
 
 type Filter = 'all' | 'won' | 'lost';
 
@@ -21,6 +22,10 @@ export default function DashboardPage() {
   useEffect(() => {
     if (!loading && !user) router.replace('/');
   }, [loading, user, router]);
+
+  useEffect(() => {
+    if (user) trackDashboardViewed();
+  }, [user]);
 
   useEffect(() => {
     if (!user) return;

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import { trackSignUp, trackLogin } from '@/lib/analytics';
 
 type Tab = 'login' | 'register' | 'reset';
 
@@ -61,12 +62,14 @@ export default function AuthModal({ open, onClose, defaultTab = 'login' }: Props
     return map[code] ?? 'Une erreur est survenue. Réessaie.';
   };
 
-  const handle = async (fn: () => Promise<void>) => {
+  const handle = async (fn: () => Promise<void>, trackAs?: 'login' | 'register') => {
     setError('');
     setInfo('');
     setBusy(true);
     try {
       await fn();
+      if (trackAs === 'register') trackSignUp('email');
+      if (trackAs === 'login') trackLogin('email');
       onClose();
     } catch (e: unknown) {
       const code = (e as { code?: string }).code ?? '';
@@ -130,7 +133,7 @@ export default function AuthModal({ open, onClose, defaultTab = 'login' }: Props
             <>
               <button
                 className="btn-google"
-                onClick={() => handle(loginWithGoogle)}
+                onClick={() => handle(loginWithGoogle, tab === 'register' ? 'register' : 'login')}
                 disabled={busy}
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
@@ -191,7 +194,7 @@ export default function AuthModal({ open, onClose, defaultTab = 'login' }: Props
               <button
                 className="btn btn-primary auth-submit"
                 disabled={busy}
-                onClick={() => handle(() => login(email, password))}
+                onClick={() => handle(() => login(email, password), 'login')}
               >
                 {busy ? 'Connexion…' : 'Se connecter'}
               </button>
@@ -205,7 +208,7 @@ export default function AuthModal({ open, onClose, defaultTab = 'login' }: Props
             <button
               className="btn btn-primary auth-submit"
               disabled={busy}
-              onClick={() => handle(() => register(email, password, displayName))}
+              onClick={() => handle(() => register(email, password, displayName), 'register')}
             >
               {busy ? 'Création…' : 'Créer mon compte'}
             </button>

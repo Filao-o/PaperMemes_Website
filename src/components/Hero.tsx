@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { trackCtaClicked } from '@/lib/analytics';
 
 const PLATFORMS = [
   { href: 'https://axiom.trade', src: '/logo/axiom.png', alt: 'Axiom', lg: false },
@@ -122,7 +123,7 @@ export default function Hero() {
               Commencer gratuitement
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
-            <a href="#install" className="btn-pixel-ghost" onClick={e => scrollTo(e, '#install')}>
+            <a href="#install" className="btn-pixel-ghost" onClick={e => { scrollTo(e, '#install'); trackCtaClicked('hero') }}>
               <Image
                 src="/logo/chrome.png"
                 alt=""
