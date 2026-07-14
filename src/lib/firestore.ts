@@ -1,4 +1,4 @@
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, limit, getDocs } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
 import { getApps, initializeApp } from 'firebase/app';
 import type { UserDocument, DashboardStats, Trade } from '@/types/firestore';
@@ -15,10 +15,19 @@ const firebaseConfig = {
 const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function getUserDocument(uid: string): Promise<UserDocument | null> {
+// Try uid first (email/password on website), then fall back to email match
+// (covers the case where the extension account and the website Google account
+// are two separate Firebase users sharing the same email).
+export async function getUserDocument(uid: string, email?: string | null): Promise<UserDocument | null> {
   const snap = await getDoc(doc(db, 'users', uid));
-  if (!snap.exists()) return null;
-  return snap.data() as UserDocument;
+  if (snap.exists()) return snap.data() as UserDocument;
+
+  if (!email) return null;
+
+  const q = query(collection(db, 'users'), where('email', '==', email), limit(1));
+  const results = await getDocs(q);
+  if (results.empty) return null;
+  return results.docs[0].data() as UserDocument;
 }
 
 export function computeStats(data: UserDocument): DashboardStats {
@@ -28,9 +37,12 @@ export function computeStats(data: UserDocument): DashboardStats {
   const losses = trades.filter(t => t.status === 'lost');
 
   const totalPnlSOL = trades.reduce((sum, t) => sum + (t.pnlSOL ?? 0), 0);
+
   const totalInvested = trades.reduce((sum, t) => {
-    const inv = t.entries?.reduce((s, e) => s + (e.invested ?? 0), 0) ?? 0;
-    return sum + inv;
+    // Extension schema has invested at trade root level (no entries sub-array in some versions)
+    const fromEntries = t.entries?.reduce((s, e) => s + (e.invested ?? 0), 0) ?? 0;
+    const fromRoot = fromEntries || (t.invested ?? 0);
+    return sum + fromRoot;
   }, 0);
 
   const avgPnlPercent =
@@ -40,12 +52,12 @@ export function computeStats(data: UserDocument): DashboardStats {
 
   const bestTrade = trades.reduce<Trade | null>((best, t) => {
     if (!best) return t;
-    return t.pnlSOL > best.pnlSOL ? t : best;
+    return (t.pnlSOL ?? 0) > (best.pnlSOL ?? 0) ? t : best;
   }, null);
 
   const worstTrade = trades.reduce<Trade | null>((worst, t) => {
     if (!worst) return t;
-    return t.pnlSOL < worst.pnlSOL ? t : worst;
+    return (t.pnlSOL ?? 0) < (worst.pnlSOL ?? 0) ? t : worst;
   }, null);
 
   return {

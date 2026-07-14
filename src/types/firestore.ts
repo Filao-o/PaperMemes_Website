@@ -21,15 +21,19 @@ export interface Trade {
   tokenName: string;
   mintAddress: string;
   terminal: string;
-  status: 'won' | 'lost';
+  status: 'won' | 'lost' | 'active' | 'closed';
   openedAt: number;
-  pnlSOL: number;
-  pnlPercent: number;
+  closedAt: number | null;
+  pnlSOL: number | null;
+  pnlPercent: number | null;
   tokensHeld: number;
+  invested: number;        // root-level (extension schema)
+  entryPrice: number;
+  entryMC: number;
   tp: number | null;
   sl: number | null;
   tpMC: number | null;
-  entries: TradeEntry[];
+  entries?: TradeEntry[];  // optional (older extension versions omit it)
   closeEvents: CloseEvent[];
 }
 

@@ -24,7 +24,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     if (!user) return;
-    getUserDocument(user.uid)
+    getUserDocument(user.uid, user.email)
       .then(doc => {
         if (!doc) { setError('Aucune donnée trouvée. Lance l\'extension PaperMemes pour commencer.'); return; }
         setData(doc);
@@ -80,13 +80,13 @@ export default function DashboardPage() {
               />
               <StatCard
                 label="Meilleur trade"
-                value={stats.bestTrade ? formatPct(stats.bestTrade.pnlPercent) : '—'}
+                value={stats.bestTrade ? formatPct(stats.bestTrade.pnlPercent ?? 0) : '—'}
                 sub={stats.bestTrade?.tokenName ?? ''}
                 positive
               />
               <StatCard
                 label="Pire trade"
-                value={stats.worstTrade ? formatPct(stats.worstTrade.pnlPercent) : '—'}
+                value={stats.worstTrade ? formatPct(stats.worstTrade.pnlPercent ?? 0) : '—'}
                 sub={stats.worstTrade?.tokenName ?? ''}
                 positive={false}
               />
@@ -151,11 +151,11 @@ export default function DashboardPage() {
                       </div>
                     </div>
                     <div className="trade-row-right">
-                      <span className={`trade-pnl ${trade.pnlSOL >= 0 ? 'pos' : 'neg'}`}>
-                        {formatSOL(trade.pnlSOL)}
+                      <span className={`trade-pnl ${(trade.pnlSOL ?? 0) >= 0 ? 'pos' : 'neg'}`}>
+                        {formatSOL(trade.pnlSOL ?? 0)}
                       </span>
-                      <span className={`trade-pct ${trade.pnlSOL >= 0 ? 'pos' : 'neg'}`}>
-                        {formatPct(trade.pnlPercent)}
+                      <span className={`trade-pct ${(trade.pnlSOL ?? 0) >= 0 ? 'pos' : 'neg'}`}>
+                        {formatPct(trade.pnlPercent ?? 0)}
                       </span>
                     </div>
                   </Link>

@@ -21,7 +21,7 @@ export default function TradeDetailPage() {
 
   useEffect(() => {
     if (!user) return;
-    getUserDocument(user.uid).then(doc => {
+    getUserDocument(user.uid, user.email).then(doc => {
       if (!doc) return;
       const found = doc.closedTrades?.find(t => t.id === tradeId) ?? null;
       setTrade(found);
@@ -60,9 +60,9 @@ export default function TradeDetailPage() {
             <h1>{trade.tokenName}</h1>
             <span className="trade-detail-terminal">{trade.terminal}</span>
           </div>
-          <div className={`trade-detail-pnl ${trade.pnlSOL >= 0 ? 'pos' : 'neg'}`}>
-            <span className="tdp-sol">{formatSOL(trade.pnlSOL)}</span>
-            <span className="tdp-pct">{formatPct(trade.pnlPercent)}</span>
+          <div className={`trade-detail-pnl ${(trade.pnlSOL ?? 0) >= 0 ? 'pos' : 'neg'}`}>
+            <span className="tdp-sol">{formatSOL(trade.pnlSOL ?? 0)}</span>
+            <span className="tdp-pct">{formatPct(trade.pnlPercent ?? 0)}</span>
           </div>
         </div>
 
@@ -74,8 +74,9 @@ export default function TradeDetailPage() {
           {lastClose && <MetricRow label="Fermé le" value={formatDate(lastClose.closedAt)} />}
           <MetricRow label="SOL investi" value={formatSOL(totalInvested)} />
           <MetricRow label="SOL récupéré" value={formatSOL(totalReturned)} />
-          <MetricRow label="PnL" value={`${formatSOL(trade.pnlSOL)} (${formatPct(trade.pnlPercent)})`} colored={trade.pnlSOL >= 0} />
+          <MetricRow label="PnL" value={`${formatSOL(trade.pnlSOL ?? 0)} (${formatPct(trade.pnlPercent ?? 0)})`} colored={(trade.pnlSOL ?? 0) >= 0} />
           {firstEntry && <MetricRow label="MC à l'entrée" value={formatMC(firstEntry.entryMC)} />}
+          {!firstEntry && trade.entryMC && <MetricRow label="MC à l'entrée" value={formatMC(trade.entryMC)} />}
           {lastClose && <MetricRow label="MC à la sortie" value={formatMC(lastClose.mcAtClose)} />}
           {mcMultiple !== null && <MetricRow label="Multiple MC" value={mcMultiple.toFixed(2) + 'x'} />}
           {trade.tp !== null && <MetricRow label="Take Profit" value={formatPct(trade.tp)} />}
