@@ -1,0 +1,53 @@
+export interface TradeEntry {
+  entryPrice: number;
+  entryMC: number;
+  invested: number;
+  tokensHeld: number;
+  timestamp: number;
+}
+
+export interface CloseEvent {
+  id: string;
+  priceAtClose: number;
+  mcAtClose: number;
+  sellPercent: number;
+  solReturned: number;
+  closedAt: number;
+  timestamp: number;
+}
+
+export interface Trade {
+  id: string;
+  tokenName: string;
+  mintAddress: string;
+  terminal: string;
+  status: 'won' | 'lost';
+  openedAt: number;
+  pnlSOL: number;
+  pnlPercent: number;
+  tokensHeld: number;
+  tp: number | null;
+  sl: number | null;
+  tpMC: number | null;
+  entries: TradeEntry[];
+  closeEvents: CloseEvent[];
+}
+
+export interface UserDocument {
+  balance: number;
+  activeTrade: Trade | null;
+  closedTrades: Trade[];
+}
+
+export interface DashboardStats {
+  totalTrades: number;
+  wins: number;
+  losses: number;
+  winRate: number;
+  totalPnlSOL: number;
+  totalInvested: number;
+  bestTrade: Trade | null;
+  worstTrade: Trade | null;
+  avgPnlPercent: number;
+  currentBalance: number;
+}

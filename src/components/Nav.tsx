@@ -118,6 +118,9 @@ export default function Nav() {
                       <span className="nav-user-email">{user.email}</span>
                     </div>
                     <hr className="nav-user-sep" />
+                    <Link href="/dashboard" className="nav-user-item" onClick={() => setUserMenuOpen(false)}>
+                      Dashboard
+                    </Link>
                     <Link href="/account" className="nav-user-item" onClick={() => setUserMenuOpen(false)}>
                       Mon compte
                     </Link>
