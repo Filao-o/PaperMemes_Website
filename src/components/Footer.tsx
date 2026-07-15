@@ -50,8 +50,8 @@ export default function Footer() {
             <div className="footer-col">
               <h4>Ressources</h4>
               <Link href="/wiki">Wiki</Link>
+              <Link href="/blog">Blog</Link>
               <Link href="/contact">Bugs / Idées</Link>
-              <a href="#">Dashboard Pro</a>
             </div>
             <div className="footer-col">
               <h4>Légal</h4>
