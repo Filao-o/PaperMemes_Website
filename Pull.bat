@@ -1,4 +1,9 @@
 @echo off
-cd /d C:\Users\Lucas\Desktop\PapersMemes-Website\PaperMemes_Website
-git pull origin main
+cd /d "C:\Users\Lucas\Desktop\PapersMemes-Website\PaperMemes_Website"
+if errorlevel 1 (
+  echo ERREUR : dossier introuvable.
+  pause
+  exit /b 1
+)
+git pull origin HEAD
 pause

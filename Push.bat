@@ -1,8 +1,12 @@
 @echo off
-cd /d C:\Users\Lucas\Desktop\PapersMemes-Website\PaperMemes_Website
+cd /d "C:\Users\Lucas\Desktop\PapersMemes-Website\PaperMemes_Website"
+if errorlevel 1 (
+  echo ERREUR : dossier introuvable.
+  pause
+  exit /b 1
+)
 git add -A
 set /p MSG="Message de commit : "
 git commit -m "%MSG%"
-for /f %%i in ('git rev-parse --abbrev-ref HEAD') do set BRANCH=%%i
-git push origin %BRANCH%
+git push origin HEAD
 pause
