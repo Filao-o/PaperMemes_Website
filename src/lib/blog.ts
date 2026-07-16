@@ -9,9 +9,20 @@ export interface BlogPost {
   title: string;
   description: string;
   date: string;
+  updatedAt?: string;
+  author?: string;
   tags: string[];
   coverImage?: string;
+  ogImage?: string;
+  entities?: string[];
+  readingTime?: number;
+  template?: 'guide' | 'comparatif' | 'definition';
   content: string;
+}
+
+function estimateReadingTime(content: string): number {
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
 }
 
 export function getAllPosts(): BlogPost[] {
@@ -26,8 +37,14 @@ export function getAllPosts(): BlogPost[] {
         title: data.title ?? '',
         description: data.description ?? '',
         date: data.date ?? '',
+        updatedAt: data.updatedAt,
+        author: data.author,
         tags: data.tags ?? [],
         coverImage: data.coverImage,
+        ogImage: data.ogImage ?? data.coverImage,
+        entities: data.entities ?? [],
+        readingTime: data.readingTime ?? estimateReadingTime(content),
+        template: data.template,
         content,
       } as BlogPost;
     })
@@ -36,4 +53,27 @@ export function getAllPosts(): BlogPost[] {
 
 export function getPost(slug: string): BlogPost | undefined {
   return getAllPosts().find(p => p.slug === slug);
+}
+
+export function extractFaqFromContent(content: string): Array<{ question: string; answer: string }> {
+  const faqSection = content.match(/## Questions fréquentes[\s\S]*/);
+  if (!faqSection) return [];
+
+  const faqBlock = faqSection[0];
+  const pairs: Array<{ question: string; answer: string }> = [];
+  const questionBlocks = faqBlock.split(/^### /m).slice(1);
+
+  for (const block of questionBlocks) {
+    const lines = block.trim().split('\n');
+    const question = lines[0].trim();
+    const answer = lines
+      .slice(1)
+      .join(' ')
+      .replace(/\[.*?\]/g, '')
+      .replace(/\*\*/g, '')
+      .trim();
+    if (question && answer) pairs.push({ question, answer });
+  }
+
+  return pairs;
 }
