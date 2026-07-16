@@ -194,7 +194,20 @@ template: "[guide|comparatif|definition]"
 
 **Mode découverte :** tableau + invitation à sélectionner.
 
-**Mode production :** uniquement le(s) fichier(s) MDX complets, prêts à être copiés dans `content/blog/[slug].mdx`. Aucun commentaire. Aucune explication. Juste le MDX (ou les MDX séparés par `---`).
+**Mode production :** chaque article MDX doit être enveloppé dans un bloc de code avec le langage `mdx`, comme ceci :
+
+````
+```mdx
+---
+title: "..."
+...
+---
+
+Contenu de l'article...
+```
+````
+
+Un article = un bloc de code. Si plusieurs articles sont demandés, un bloc par article, séparés par `---` avec `# Article X/N` entre les deux. Aucun texte avant ou après les blocs. Aucune explication. Juste les blocs MDX.
 
 ---
 

@@ -1,0 +1,29 @@
+name: Sync blog articles to Notion
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/blog/**.mdx'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install gray-matter @notionhq/client
+
+      - name: Sync changed MDX files to Notion
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_BLOG_DATABASE_ID }}
+          SITE_URL: https://papermemes.app
+        run: node .github/scripts/sync-to-notion.js
