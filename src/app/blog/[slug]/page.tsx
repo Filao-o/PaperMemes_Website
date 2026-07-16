@@ -9,12 +9,9 @@ import { getAllPosts, getPost, extractFaqFromContent, extractHeadings } from '@/
 
 const SITE_URL = 'https://papermemes.app';
 
-// URL structure per locale — update slug translations when EN/ES articles are ready
 function getLocaleUrls(slug: string) {
   return {
     fr: `${SITE_URL}/blog/${slug}`,
-    // en: `${SITE_URL}/en/blog/${slug}`,   // uncomment when EN articles exist
-    // es: `${SITE_URL}/es/blog/${slug}`,   // uncomment when ES articles exist
   };
 }
 
@@ -43,8 +40,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: {
         'fr': localeUrls.fr,
         'x-default': localeUrls.fr,
-        // 'en': localeUrls.en,
-        // 'es': localeUrls.es,
       },
     },
     openGraph: {
@@ -151,7 +146,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       <div className="blog-post-container">
 
-        {/* Breadcrumb visible */}
+        {/* Breadcrumb */}
         <nav className="blog-post-breadcrumb" aria-label="Fil d'Ariane">
           <Link href="/">Accueil</Link>
           <span className="breadcrumb-sep" aria-hidden="true">›</span>
@@ -199,7 +194,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
-        {/* Table of contents — articles > 1000 mots uniquement */}
+        {/* Table of contents */}
         {showToc && (
           <nav className="blog-toc" aria-label="Table des matières">
             <p className="blog-toc-title">Dans cet article</p>
@@ -233,20 +228,33 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* CTA */}
         <div className="blog-post-cta">
-          <div className="blog-cta-inner">
-            <p className="blog-cta-title">Prêt à trader sans risque ?</p>
-            <p className="blog-cta-sub">
-              PaperMemes simule tes trades sur de vrais prix Solana. Gratuit, sans wallet réel.
-            </p>
-            <a
-              href="https://chromewebstore.google.com/detail/papermemes/apbagjaigpdhajmoacfdgabeeemladoi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn blog-cta-btn"
-            >
-              Installer l&apos;extension Chrome — gratuit
-            </a>
-          </div>
+          <p className="blog-cta-eyebrow">8 500+ TRADERS EN FORMATION</p>
+          <p className="blog-cta-title">
+            Arrête d’apprendre<br />
+            <span className="blog-cta-title-dim">en perdant de l’argent réel</span>
+          </p>
+          <p className="blog-cta-sub">
+            Installe PaperMemes, entraîne-toi sur de vrais marchés et passe au vrai trading uniquement quand tu es prêt.
+          </p>
+          <a
+            href="https://chromewebstore.google.com/detail/papermemes/apbagjaigpdhajmoacfdgabeeemladoi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="blog-cta-btn"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" fill="#4285F4"/>
+              <path d="M12 8a4 4 0 0 1 3.464 2H20.9A9 9 0 1 0 12 21v-4.536A4 4 0 0 1 12 8z" fill="#34A853"/>
+              <path d="M3.1 10H8a4 4 0 0 0-.536 2H3.1A9 9 0 0 1 12 3v4.07A4.978 4.978 0 0 0 8 10z" fill="#EA4335"/>
+              <path d="M12 16a4 4 0 0 1-3.464-2H4.1A9 9 0 0 0 20.9 10h-4.436A4 4 0 0 1 12 16z" fill="#FBBC05"/>
+            </svg>
+            Installer l’extension Chrome
+          </a>
+          <ul className="blog-cta-checks">
+            <li>✓ Aucune carte bancaire</li>
+            <li>✓ Aucun wallet requis</li>
+            <li>✓ Installation en 30 secondes</li>
+          </ul>
         </div>
 
         {/* Back link */}
