@@ -1,5 +1,5 @@
 @echo off
-cd /d "C:\Users\Lucas\Desktop\PapersMemes-Website\PaperMemes_Website"
+cd /d "C:\Users\Lucas\Desktop\PapersMemes-Website\PaperMemes_Website-main"
 if errorlevel 1 (
   echo ERREUR : dossier introuvable.
   pause
