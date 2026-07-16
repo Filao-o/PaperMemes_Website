@@ -91,6 +91,7 @@ Ils ne sont **jamais mis en avant** sur le site — indexés par Google uniqueme
 
 30. Meta description : **140-155 caractères exactement** — contient le keyword, donne envie de cliquer, bénéfice concret
 31. Champ `ogImage` : chemin image 1200×630px (ex: `/images/blog/slug-article.jpg`) — si pas d'image, laisser `""`
+31b. Champ `coverImageAlt` : description de l'image contenant le keyword principal — ex: "Graphique de prix du memecoin $WIF sur Solana" — jamais "image de" ou "photo de"
 32. Le champ `date` = date de publication initiale, **jamais modifié**
 33. Le champ `updatedAt` = date de dernière révision — remplir à chaque regénération
 
@@ -146,6 +147,7 @@ slug: "[slug-de-larticle]"
 tags: ["tag1", "tag2", "tag3"]
 entities: ["entité1", "entité2", "entité3", "entité4", "entité5"]
 coverImage: ""
+coverImageAlt: "[KEYWORD PRINCIPAL] — description courte de l'image"
 ogImage: ""
 readingTime: [X]
 template: "[guide|comparatif|definition]"

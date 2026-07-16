@@ -190,7 +190,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="blog-post-cover">
             <Image
               src={post.coverImage}
-              alt={post.title}
+              alt={post.coverImageAlt ?? post.title}
               width={1200}
               height={630}
               className="blog-post-cover-img"

@@ -13,6 +13,7 @@ export interface BlogPost {
   author?: string;
   tags: string[];
   coverImage?: string;
+  coverImageAlt?: string;
   ogImage?: string;
   entities?: string[];
   readingTime?: number;
@@ -41,6 +42,7 @@ export function getAllPosts(): BlogPost[] {
         author: data.author,
         tags: data.tags ?? [],
         coverImage: data.coverImage,
+        coverImageAlt: data.coverImageAlt,
         ogImage: data.ogImage ?? data.coverImage,
         entities: data.entities ?? [],
         readingTime: data.readingTime ?? estimateReadingTime(content),
