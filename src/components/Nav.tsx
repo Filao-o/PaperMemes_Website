@@ -62,14 +62,13 @@ export default function Nav() {
       <header ref={navRef} className={`nav${scrolled ? ' scrolled' : ''}`} role="banner">
         <div className="nav-inner">
           <Link href="/" className="logo" aria-label="Papermemes — home">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/logo/ppm-black-nobg.svg"
               alt="Papermemes"
-              width={120}
               height={40}
               style={{ width: 'auto', height: 40 }}
               className="logo-img"
-              priority
             />
           </Link>
 

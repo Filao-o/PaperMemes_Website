@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -8,10 +7,10 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <Link href="/" className="logo" aria-label="Papermemes — accueil">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="/logo/ppm-white-nobg.svg"
                 alt="Papermemes"
-                width={140}
                 height={48}
                 style={{ width: 'auto', height: 48 }}
                 className="logo-img logo-img--footer"
