@@ -3,9 +3,20 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getAllPosts, getPost, extractFaqFromContent } from '@/lib/blog';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { getAllPosts, getPost, extractFaqFromContent, extractHeadings } from '@/lib/blog';
 
 const SITE_URL = 'https://papermemes.app';
+
+// URL structure per locale — update slug translations when EN/ES articles are ready
+function getLocaleUrls(slug: string) {
+  return {
+    fr: `${SITE_URL}/blog/${slug}`,
+    // en: `${SITE_URL}/en/blog/${slug}`,   // uncomment when EN articles exist
+    // es: `${SITE_URL}/es/blog/${slug}`,   // uncomment when ES articles exist
+  };
+}
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -20,22 +31,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPost(slug);
   if (!post) return {};
 
-  const canonical = `${SITE_URL}/blog/${post.slug}`;
+  const localeUrls = getLocaleUrls(slug);
   const ogImage = post.ogImage ?? `${SITE_URL}/og-default.jpg`;
 
   return {
     title: `${post.title} — PaperMemes`,
     description: post.description,
-    alternates: { canonical },
     authors: post.author ? [{ name: post.author }] : undefined,
+    alternates: {
+      canonical: localeUrls.fr,
+      languages: {
+        'fr': localeUrls.fr,
+        'x-default': localeUrls.fr,
+        // 'en': localeUrls.en,
+        // 'es': localeUrls.es,
+      },
+    },
     openGraph: {
       title: post.title,
       description: post.description,
       type: 'article',
-      url: canonical,
+      url: localeUrls.fr,
       publishedTime: post.date,
       modifiedTime: post.updatedAt ?? post.date,
       images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+      locale: 'fr_FR',
     },
     twitter: {
       card: 'summary_large_image',
@@ -61,7 +81,11 @@ export default async function BlogPostPage({ params }: Props) {
     : null;
 
   const faqItems = extractFaqFromContent(post.content);
-  const canonical = `${SITE_URL}/blog/${post.slug}`;
+  const headings = extractHeadings(post.content);
+  const wordCount = post.content.trim().split(/\s+/).length;
+  const showToc = wordCount > 1000 && headings.length > 2;
+
+  const canonical = getLocaleUrls(slug).fr;
   const ogImage = post.ogImage ?? `${SITE_URL}/og-default.jpg`;
 
   const articleSchema = {
@@ -83,6 +107,7 @@ export default async function BlogPostPage({ params }: Props) {
     url: canonical,
     image: ogImage,
     keywords: post.tags.join(', '),
+    inLanguage: 'fr-FR',
   };
 
   const faqSchema = faqItems.length > 0
@@ -126,13 +151,13 @@ export default async function BlogPostPage({ params }: Props) {
 
       <div className="blog-post-container">
 
-        {/* Breadcrumb */}
+        {/* Breadcrumb visible */}
         <nav className="blog-post-breadcrumb" aria-label="Fil d'Ariane">
           <Link href="/">Accueil</Link>
-          <span aria-hidden="true"> › </span>
+          <span className="breadcrumb-sep" aria-hidden="true">›</span>
           <Link href="/blog">Blog</Link>
-          <span aria-hidden="true"> › </span>
-          <span>{post.title}</span>
+          <span className="breadcrumb-sep" aria-hidden="true">›</span>
+          <span aria-current="page">{post.title}</span>
         </nav>
 
         {/* Header */}
@@ -174,9 +199,36 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
+        {/* Table of contents — articles > 1000 mots uniquement */}
+        {showToc && (
+          <nav className="blog-toc" aria-label="Table des matières">
+            <p className="blog-toc-title">Dans cet article</p>
+            <ol className="blog-toc-list">
+              {headings.map(h => (
+                <li
+                  key={h.id}
+                  className={`blog-toc-item blog-toc-item--h${h.level}`}
+                >
+                  <a href={`#${h.id}`}>{h.text}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
         {/* Content */}
         <div className="blog-post-body">
-          <MDXRemote source={post.content} />
+          <MDXRemote
+            source={post.content}
+            options={{
+              mdxOptions: {
+                rehypePlugins: [
+                  rehypeSlug,
+                  [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+                ],
+              },
+            }}
+          />
         </div>
 
         {/* CTA */}

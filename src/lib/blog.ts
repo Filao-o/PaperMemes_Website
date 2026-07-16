@@ -55,6 +55,43 @@ export function getPost(slug: string): BlogPost | undefined {
   return getAllPosts().find(p => p.slug === slug);
 }
 
+export interface Heading {
+  level: 2 | 3;
+  text: string;
+  id: string;
+}
+
+function slugifyHeading(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[àâä]/g, 'a')
+    .replace(/[éèêë]/g, 'e')
+    .replace(/[îï]/g, 'i')
+    .replace(/[ôö]/g, 'o')
+    .replace(/[ùûü]/g, 'u')
+    .replace(/ç/g, 'c')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
+
+export function extractHeadings(content: string): Heading[] {
+  const headings: Heading[] = [];
+  const lines = content.split('\n');
+  for (const line of lines) {
+    const h2 = line.match(/^## (.+)$/);
+    const h3 = line.match(/^### (.+)$/);
+    if (h2) {
+      const text = h2[1].replace(/\*\*/g, '').trim();
+      headings.push({ level: 2, text, id: slugifyHeading(text) });
+    } else if (h3) {
+      const text = h3[1].replace(/\*\*/g, '').trim();
+      headings.push({ level: 3, text, id: slugifyHeading(text) });
+    }
+  }
+  return headings;
+}
+
 export function extractFaqFromContent(content: string): Array<{ question: string; answer: string }> {
   const faqSection = content.match(/## Questions fréquentes[\s\S]*/);
   if (!faqSection) return [];
