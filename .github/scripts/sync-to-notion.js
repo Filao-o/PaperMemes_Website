@@ -2,13 +2,13 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
-const { Client } = require('@notionhq/client');
+const notionPkg = require('@notionhq/client');
+const Client = notionPkg.Client ?? notionPkg.default?.Client ?? notionPkg;
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 const SITE_URL = process.env.SITE_URL || 'https://papermemes.app';
 
-// Get MDX files changed in this push
 function getChangedMdxFiles() {
   try {
     const output = execSync('git diff --name-only HEAD~1 HEAD -- content/blog/*.mdx', {
@@ -16,13 +16,11 @@ function getChangedMdxFiles() {
     }).trim();
     return output ? output.split('\n').filter(f => f.endsWith('.mdx')) : [];
   } catch {
-    // First commit or single commit — sync all
     const output = execSync('git ls-files content/blog/*.mdx', { encoding: 'utf-8' }).trim();
     return output ? output.split('\n') : [];
   }
 }
 
-// Find existing Notion page by slug
 async function findPageBySlug(slug) {
   const response = await notion.databases.query({
     database_id: DATABASE_ID,
@@ -31,7 +29,6 @@ async function findPageBySlug(slug) {
   return response.results[0] ?? null;
 }
 
-// Build Notion page properties from MDX frontmatter
 function buildProperties(data, slug) {
   const url = `${SITE_URL}/blog/${slug}`;
   const props = {
