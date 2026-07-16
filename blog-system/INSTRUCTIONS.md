@@ -14,55 +14,103 @@ Ils ne sont **jamais mis en avant** sur le site — indexés par Google uniqueme
 
 ---
 
-## BLOC 1 — Keyword & Sémantique
+## MODES D'UTILISATION
 
-1. Le **keyword principal** est fourni dans la demande
-2. Il apparaît dans : H1 (exact ou quasi-exact), meta description, les **80 premiers mots**, au moins **2 H2**
-3. Densité cible : 1-2% — ne jamais forcer, rester naturel
-4. **Ne jamais** stuffier le keyword — Google pénalise
-5. Les **keywords secondaires** fournis doivent être intégrés naturellement dans le corps
-6. Couvrir le **champ sémantique complet** : synonymes, termes associés, questions liées
-7. Le champ `entities` du frontmatter doit contenir 5-8 entités sémantiques clés du sujet (ex: "Solana", "liquidité", "market cap", "pump", "DEX")
+Ce projet fonctionne en deux modes. Précise le mode dans ta demande.
 
 ---
 
-## BLOC 2 — Structure & Longueur
+## MODE 1 — DÉCOUVERTE DE SUJETS
 
-8. Frontmatter MDX complet — **tous les champs** doivent être remplis (voir détail ci-dessous)
-9. Intro : **80-120 mots**, keyword dans les 2 premières phrases, accroche forte (question, stat, situation concrète)
-10. Corps : sections H2, chaque section 100-200 mots, H3 obligatoire si section > 250 mots
-11. Pas de liste à puces partout — **alterner prose et listes**
-12. Pas de conclusion séparée — terminer sur la FAQ
-13. Ne jamais écrire le CTA final (injecté automatiquement)
+**Format de demande :**
+```
+Mode : découverte
+Thème : [optionnel — ex: "débutants Solana", "stratégies de trading", "comprendre les tokens"]
+Nombre : [ex: 10]
+```
+
+**Ce que tu dois produire :**
+
+Une liste numérotée de sujets, chacun sur une ligne, format tableau :
+
+| # | Keyword principal | Template | Intention | Difficulté | Potentiel |
+|---|---|---|---|---|---|
+| 1 | [keyword] | [guide/comparatif/definition] | [débutant/intermédiaire] | [faible/moyen/fort] | [⭐/⭐⭐/⭐⭐⭐] |
+
+**Règles pour choisir les sujets :**
+- Keywords que des débutants tapent vraiment sur Google (pas du jargon pro)
+- Mots-clés avec intention claire : "comment", "c'est quoi", "vs", "meilleur"
+- Priorité aux keywords longue traîne (3-5 mots) — moins de concurrence, meilleure conversion
+- Couvrir les 3 templates de façon équilibrée
+- Éviter les sujets déjà couverts dans la liste des articles existants (si fournie)
+- Alterner débutant / intermédiaire pour toucher différents profils
+
+**Après la liste :**
+Terminer par :
+> "Réponds avec les numéros des sujets à générer, ex : `Génère : 1, 4, 7`"
+
+---
+
+## MODE 2 — PRODUCTION D'ARTICLES
+
+**Format de demande :**
+```
+Génère : [numéros ou description directe]
+Author : [Prénom Nom]
+Notes : [contexte spécifique, angle particulier, lien vers article existant à citer]
+```
+
+Si la demande référence des numéros de la liste découverte, utilise les keywords et templates correspondants.  
+Si c'est une demande directe, déduis le template du keyword.
+
+**Pour chaque article demandé, produire le MDX complet dans l'ordre.**  
+Si plusieurs articles sont demandés, les séparer par `---` et indiquer `# Article X/N` avant chaque frontmatter.
+
+---
+
+## RÈGLES SEO COMPLÈTES
+
+### BLOC 1 — Keyword & Sémantique
+
+1. Le **keyword principal** doit apparaître dans : H1 (exact ou quasi-exact), meta description, les **80 premiers mots**, au moins **2 H2**
+2. Densité cible : 1-2% — ne jamais forcer, rester naturel. **Ne jamais** stuffier
+3. Les **keywords secondaires** intégrés naturellement dans le corps
+4. Couvrir le **champ sémantique complet** : synonymes, termes associés, questions liées
+5. Le champ `entities` : 5-8 entités sémantiques clés du sujet (ex: "Solana", "liquidité", "market cap", "pump", "DEX")
+
+### BLOC 2 — Structure & Longueur
+
+6. Frontmatter MDX complet — **tous les champs** remplis
+7. Intro : **80-120 mots**, keyword dans les 2 premières phrases, accroche forte
+8. H3 obligatoire si une section H2 dépasse 250 mots
+9. Alterner prose et listes — pas de listes partout
+10. Pas de conclusion séparée — terminer sur la FAQ
+11. Ne jamais écrire le CTA final (injecté automatiquement)
 
 **Longueur cible par template :**
-| Template | Mots cibles | Raison |
-|---|---|---|
-| `definition` | 600-800 mots | Réponse directe, snippet Google |
-| `guide` | 1000-1500 mots | Couverture complète how-to |
-| `comparatif` | 1200-1800 mots | Tableau + nuances nécessaires |
+| Template | Mots cibles |
+|---|---|
+| `definition` | 600-800 mots |
+| `guide` | 1000-1500 mots |
+| `comparatif` | 1200-1800 mots |
 
----
+### BLOC 3 — Featured Snippet & FAQ
 
-## BLOC 3 — Featured Snippet & FAQ
+12. **3 questions FAQ minimum** basées sur les vraies "People Also Ask" Google
+13. **Q1 = définition directe du keyword en 40-60 mots prose** — réponse visée pour la position 0 Google
+    - Format : "[TERME] est [définition directe]. [phrase de contexte pratique]."
+    - **Jamais de liste dans Q1**
+14. Q2 = cas pratique ou "comment utiliser [TERME]"
+15. Q3 = différence avec terme proche ou erreur fréquente
+16. Toutes les réponses FAQ en **prose uniquement**
 
-14. **3 questions FAQ minimum**, basées sur les vraies "People Also Ask" Google du keyword
-15. **Q1 = définition directe du keyword en 40-60 mots prose** — c'est la réponse visée pour la position 0 Google
-    - Format obligatoire : "[TERME] est [définition directe]. [phrase de contexte pratique]."
-    - **Jamais de liste dans Q1** — Google snippet favorise la prose courte
-16. Q2 = cas pratique ou "comment utiliser [TERME]"
-17. Q3 = différence avec terme proche ou erreur fréquente à éviter
-18. Toutes les réponses FAQ en **prose uniquement** — pas de tirets, pas de bullet points
+### BLOC 4 — Liens internes (maillage)
 
----
-
-## BLOC 4 — Liens internes (maillage)
-
-19. **3 à 5 liens internes minimum** par article
-20. Au moins 1 lien vers une page wiki ou fonctionnalité du site
-21. Au moins 1 lien vers un autre article blog si le sujet le permet
-22. Anchor texts **variés** — jamais le même texte ancre pour le même lien dans le même article
-23. **Uniquement des liens vers des pages qui existent réellement :**
+17. **3 à 5 liens internes minimum** par article
+18. Au moins 1 lien vers une page wiki ou fonctionnalité
+19. Au moins 1 lien vers un autre article blog si le sujet le permet
+20. Anchor texts **variés** — jamais le même texte pour le même lien
+21. **Uniquement des liens vers des pages qui existent :**
 
 | URL | Page |
 |---|---|
@@ -70,71 +118,57 @@ Ils ne sont **jamais mis en avant** sur le site — indexés par Google uniqueme
 | `/wiki/[slug]` | Article wiki spécifique |
 | `/dashboard` | Tableau de bord des trades |
 | `/pro` | Offre Pro PaperMemes |
-| `/blog/[slug]` | Autres articles blog existants |
+| `/blog/[slug]` | Autres articles blog |
 | `/contact` | Page contact |
 
-24. Ne jamais inventer une URL — si le lien n'existe pas dans cette liste, ne pas l'inclure
+22. Ne jamais inventer une URL absente de cette liste
+
+### BLOC 5 — E-E-A-T
+
+23. Inclure **au moins 1 donnée chiffrée ou observation terrain** par article
+24. Exemples avec tokens réels : **$BONK, $WIF, $POPCAT, $MOODENG**
+25. **Jamais** de conseil financier, **jamais** de prédiction de prix
+
+### BLOC 6 — Images (Unsplash)
+
+26. Chaque article doit avoir une image via Unsplash — utilise cette URL :
+    ```
+    https://source.unsplash.com/1200x630/?[MOT1],[MOT2],[MOT3]
+    ```
+    Choisir 2-4 mots-clés anglais pertinents pour le sujet (ex: `crypto,trading,chart,dark` ou `solana,blockchain,digital`)
+
+27. Mettre la même URL dans `coverImage` et `ogImage`
+
+28. **`coverImageAlt`** : description de l'image contenant le keyword principal
+    - Format : "[KEYWORD PRINCIPAL] — [ce qu'on voit sur l'image, en 5-8 mots]"
+    - Exemple : "paper trading Solana — graphique de prix crypto sur écran sombre"
+    - **Jamais** "image de" ou "photo de"
+
+**Mots-clés Unsplash recommandés par type d'article :**
+| Sujet | Mots-clés Unsplash |
+|---|---|
+| Trading / graphiques | `crypto,trading,chart,dark` |
+| Solana / blockchain | `solana,blockchain,digital,purple` |
+| Memecoins / tokens | `cryptocurrency,coin,digital,neon` |
+| Stratégie / méthode | `strategy,planning,crypto,screen` |
+| Débutant / apprendre | `learning,computer,crypto,study` |
+| Risque / sécurité | `security,lock,crypto,dark` |
+
+### BLOC 7 — Meta & Open Graph
+
+29. Meta description : **140-155 caractères exactement** — keyword + bénéfice concret
+30. `date` = date du jour au format YYYY-MM-DD
+31. `updatedAt` = même valeur que `date` à la génération initiale
+32. `readingTime` = estimation en minutes (total mots ÷ 200, arrondi au supérieur)
+
+### BLOC 8 — Fraîcheur & Langue
+
+33. Si révision (updatedAt > 6 mois après date) : ajouter "*(Article mis à jour le [DATE])*" en intro
+34. `inLanguage` implicite : toujours en français
 
 ---
 
-## BLOC 5 — E-E-A-T (Experience, Expertise, Authority, Trust)
-
-25. Le champ `author` du frontmatter doit être rempli
-26. Inclure **au moins 1 donnée chiffrée ou observation terrain** par article (volume de trades, % de traders qui font X, exemple de prix réel daté)
-27. Exemples avec tokens réels et connus : **$BONK, $WIF, $POPCAT, $MOODENG** — pas des tokens fictifs obscurs
-28. **Jamais** de conseil financier ("achète ce token", "tu peux gagner X%")
-29. **Jamais** de prédiction de prix
-
----
-
-## BLOC 6 — Meta & Open Graph
-
-30. Meta description : **140-155 caractères exactement** — contient le keyword, donne envie de cliquer, bénéfice concret
-31. Champ `ogImage` : chemin image 1200×630px (ex: `/images/blog/slug-article.jpg`) — si pas d'image, laisser `""`
-31b. Champ `coverImageAlt` : description de l'image contenant le keyword principal — ex: "Graphique de prix du memecoin $WIF sur Solana" — jamais "image de" ou "photo de"
-32. Le champ `date` = date de publication initiale, **jamais modifié**
-33. Le champ `updatedAt` = date de dernière révision — remplir à chaque regénération
-
----
-
-## BLOC 7 — Fraîcheur
-
-34. Si l'article est une révision (updatedAt > 6 mois après date), ajouter en intro : "*(Article mis à jour le [DATE])*"
-35. Le champ `readingTime` doit être estimé en minutes (total mots ÷ 200, arrondi)
-
----
-
-## Templates disponibles
-
-| Template | Usage | Type de keyword |
-|---|---|---|
-| `guide` | Tutoriel complet, how-to | "comment faire X", "guide X" |
-| `comparatif` | Versus, différences | "X vs Y", "différence entre X et Y" |
-| `definition` | Qu'est-ce que, lexique | "c'est quoi X", "définition X" |
-
----
-
-## Format de demande
-
-```
-Template : [guide / comparatif / definition]
-Keyword principal : [keyword exact]
-Keywords secondaires : [kw2, kw3, kw4]
-Slug : [url-de-larticle]
-Author : [nom de l'auteur]
-Notes : [contexte spécifique, angle, lien vers article existant à citer]
-```
-
----
-
-## Format de sortie
-
-Sortie = **uniquement le fichier MDX complet**, prêt à être copié dans `content/blog/[slug].mdx`.  
-Aucun commentaire avant ou après. Aucune explication. Juste le MDX.
-
----
-
-## Frontmatter complet attendu
+## FRONTMATTER COMPLET ATTENDU
 
 ```yaml
 ---
@@ -146,9 +180,9 @@ author: "[Prénom Nom]"
 slug: "[slug-de-larticle]"
 tags: ["tag1", "tag2", "tag3"]
 entities: ["entité1", "entité2", "entité3", "entité4", "entité5"]
-coverImage: ""
-coverImageAlt: "[KEYWORD PRINCIPAL] — description courte de l'image"
-ogImage: ""
+coverImage: "https://source.unsplash.com/1200x630/?[mots,clés,anglais]"
+coverImageAlt: "[KEYWORD PRINCIPAL] — [description courte de l'image]"
+ogImage: "https://source.unsplash.com/1200x630/?[mots,clés,anglais]"
 readingTime: [X]
 template: "[guide|comparatif|definition]"
 ---
@@ -156,7 +190,15 @@ template: "[guide|comparatif|definition]"
 
 ---
 
-## Checklist avant de valider ta sortie
+## FORMAT DE SORTIE
+
+**Mode découverte :** tableau + invitation à sélectionner.
+
+**Mode production :** uniquement le(s) fichier(s) MDX complets, prêts à être copiés dans `content/blog/[slug].mdx`. Aucun commentaire. Aucune explication. Juste le MDX (ou les MDX séparés par `---`).
+
+---
+
+## CHECKLIST AVANT DE VALIDER (mode production)
 
 - [ ] Keyword dans H1 exact ou quasi-exact
 - [ ] Keyword dans les 80 premiers mots
@@ -167,6 +209,8 @@ template: "[guide|comparatif|definition]"
 - [ ] 3 à 5 liens internes, URLs existantes uniquement
 - [ ] Au moins 1 donnée chiffrée ou exemple terrain
 - [ ] Champ `entities` : 5-8 entités
+- [ ] Image Unsplash avec mots-clés pertinents dans `coverImage` et `ogImage`
+- [ ] `coverImageAlt` contient le keyword, pas de "image de"
 - [ ] Champ `author` rempli
 - [ ] Champ `readingTime` estimé
 - [ ] Frontmatter complet (tous les champs)
