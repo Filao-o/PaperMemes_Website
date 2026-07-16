@@ -63,11 +63,11 @@ export default function Nav() {
         <div className="nav-inner">
           <Link href="/" className="logo" aria-label="Papermemes — home">
             <Image
-              src="/logo/papermeme-removebg.png"
+              src="/logo/ppm-white-nobg.svg"
               alt="Papermemes"
               width={120}
-              height={120}
-              style={{ width: 'auto', height: 120 }}
+              height={40}
+              style={{ width: 'auto', height: 40 }}
               className="logo-img"
               priority
             />

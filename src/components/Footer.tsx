@@ -9,11 +9,11 @@ export default function Footer() {
           <div className="footer-brand">
             <Link href="/" className="logo" aria-label="Papermemes — accueil">
               <Image
-                src="/logo/papermeme-removebg.png"
+                src="/logo/ppm-white-nobg.svg"
                 alt="Papermemes"
-                width={120}
-                height={120}
-                style={{ width: 'auto', height: 120 }}
+                width={140}
+                height={48}
+                style={{ width: 'auto', height: 48 }}
                 className="logo-img logo-img--footer"
               />
             </Link>
