@@ -20,27 +20,25 @@ export default function Hero() {
     return () => clearTimeout(t);
   }, []);
 
-  // "prix" : couleur qui oscille rouge/vert comme un actif en direct
   useEffect(() => {
     const el = priceRef.current;
     if (!el) return;
     let raf = 0;
     let last = performance.now();
-    let value = 1;      // 1 = vert, 0 = rouge
+    let value = 1;
     let target = 1;
-    let speed = 1.5;    // unités/seconde
+    let speed = 1.5;
     let holdUntil = 0;
 
     const pick = () => {
       target = Math.random() < 0.5 ? 0 : 1;
-      speed = 0.8 + Math.random() * Math.random() * 7; // parfois lent, parfois vif
+      speed = 0.8 + Math.random() * Math.random() * 7;
       holdUntil = 0;
     };
     const green = [0, 230, 118];
     const red = [255, 64, 64];
     const white = [255, 255, 255];
     const apply = (v: number) => {
-      // v: 1 = vert, 0.5 = blanc (transition), 0 = rouge — jamais de jaune
       let c: number[];
       if (v >= 0.5) {
         const t = (v - 0.5) / 0.5;
@@ -100,76 +98,84 @@ export default function Hero() {
     <section className="hero" id="hero" aria-label="Introduction">
       <div className="hero-bg" aria-hidden="true">
         <div className="hero-bg-overlay" />
+        <div className="hero-watermark">PM</div>
       </div>
 
-      <div className="hero-grid">
-        <div className="hero-left">
-          <div className="hero-badge" role="status">
-            <span className="badge-dot" aria-hidden="true" />
-            PaperMemes • L&apos;extension n°1 Demo MemesCoins
-          </div>
+      <div className="hero-body">
+        <div className="hero-badge" role="status">
+          <span className="badge-dot" aria-hidden="true" />
+          PaperMemes • L&apos;extension n°1 Demo MemesCoins
+        </div>
 
-          <h1 className="hero-title">
-            Deviens <strong>rentable</strong> avant de risquer ton capital.
-            <span className="hero-title-accent">Zéro risque, vrais <span ref={priceRef} className="hero-price-flicker">prix</span>.</span>
-          </h1>
+        <h1 className="hero-title">
+          Deviens <strong>rentable</strong> avant<br />
+          de risquer ton capital<span className="hero-dot">.</span>
+        </h1>
 
-          <p className="hero-desc">
-            Simule le trading de memecoins sur de vrais prix de marché avec un wallet virtuel en SOL. Gagne de l&apos;expérience — sans risquer un seul centime.
-          </p>
+        <p className="hero-desc">
+          Simule le trading de memecoins sur de vrais prix de marché avec un wallet virtuel en SOL. Gagne de l&apos;expérience — sans risquer un seul centime.
+        </p>
 
-          <div ref={ctasRef} className="hero-ctas">
-            <a href="#install" className="btn-pixel-primary" onClick={e => scrollTo(e, '#install')}>
-              Commencer gratuitement
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-            <a href="#install" className="btn-pixel-ghost" onClick={e => { scrollTo(e, '#install'); trackCtaClicked('hero') }}>
-              <Image
-                src="/logo/chrome.png"
-                alt=""
-                width={18}
-                height={18}
-                style={{ width: 18, height: 'auto' }}
-              />
-              Installer l&apos;extension Chrome
-            </a>
+        <a href="#install" className="hero-link-cta" onClick={e => scrollTo(e, '#install')}>
+          Commencer gratuitement
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+
+        <div ref={ctasRef} className="hero-ctas">
+          <a href="#install" className="btn-pixel-primary" onClick={e => scrollTo(e, '#install')}>
+            Commencer gratuitement
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a href="#install" className="btn-pixel-ghost" onClick={e => { scrollTo(e, '#install'); trackCtaClicked('hero'); }}>
+            <Image src="/logo/chrome.png" alt="" width={18} height={18} style={{ width: 18, height: 'auto' }} />
+            Installer l&apos;extension Chrome
+          </a>
+        </div>
+      </div>
+
+      <div className="hero-footer">
+        <div className="hero-ticker-section">
+          <span className="hero-bottom-label">Integrates with your favorite platforms</span>
+          <div className="hero-bottom-ticker-wrap">
+            <div ref={tickerRef} className="hero-bottom-ticker">
+              {[...Array(4)].flatMap((_, set) =>
+                PLATFORMS.map((p, i) => (
+                  <a
+                    key={`${set}-${i}`}
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="platform-logo-link"
+                    aria-hidden={set > 0 ? 'true' : undefined}
+                    tabIndex={set > 0 ? -1 : undefined}
+                  >
+                    <Image
+                      src={p.src}
+                      alt={set === 0 ? p.alt : ''}
+                      width={p.lg ? 80 : 56}
+                      height={p.lg ? 40 : 28}
+                      style={{ width: 'auto', height: p.lg ? 40 : 28 }}
+                      className={`platform-logo-img${p.lg ? ' platform-logo-img--lg' : ''}`}
+                    />
+                  </a>
+                ))
+              )}
+            </div>
           </div>
         </div>
 
-        <div className="hero-visual">
-          <div className="hero-ticker-section">
-            <span className="hero-bottom-label">Integrates to your favorite trading platforms</span>
-            <div className="hero-bottom-ticker-wrap">
-              <div ref={tickerRef} className="hero-bottom-ticker">
-                {[...Array(4)].flatMap((_, set) =>
-                  PLATFORMS.map((p, i) => (
-                    <a
-                      key={`${set}-${i}`}
-                      href={p.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="platform-logo-link"
-                      aria-hidden={set > 0 ? 'true' : undefined}
-                      tabIndex={set > 0 ? -1 : undefined}
-                    >
-                      <Image
-                        src={p.src}
-                        alt={set === 0 ? p.alt : ''}
-                        width={p.lg ? 80 : 56}
-                        height={p.lg ? 40 : 28}
-                        style={{ width: 'auto', height: p.lg ? 40 : 28 }}
-                        className={`platform-logo-img${p.lg ? ' platform-logo-img--lg' : ''}`}
-                      />
-                    </a>
-                  ))
-                )}
-              </div>
-            </div>
+        <div className="hero-info-cols">
+          <div className="hero-info-col">
+            <span className="hero-info-title">Extension Chrome n°1</span>
+            <span className="hero-info-desc">Paper trading sur de vrais prix de marché.</span>
           </div>
-
-          {/* [TODO] Remplacer par le vrai mockup du dashboard une fois prêt */}
-          <div className="hero-visual-placeholder">
-            <span>Dashboard preview — à venir</span>
+          <div className="hero-info-col">
+            <span className="hero-info-title">Zéro risque, vrais <span ref={priceRef} className="hero-price-flicker">prix</span></span>
+            <span className="hero-info-desc">Gagne de l&apos;expérience sans risquer un centime.</span>
           </div>
         </div>
       </div>
