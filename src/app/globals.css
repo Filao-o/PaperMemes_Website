@@ -839,7 +839,14 @@ cite { font-style: normal; }
    ============================================================ */
 .testimonials-section {
   background: var(--c-bg);
-  padding: 80px 0 96px;
+  padding: 32px 0 96px;
+}
+
+/* Wide container — fills more of the viewport than the standard .container */
+.tbento-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--sp-5);
 }
 
 /* Header */
@@ -866,13 +873,30 @@ cite { font-style: normal; }
 }
 .tbento-dot { color: var(--c-green); }
 
-/* Grid */
+/* Grid — stat card + 3 flex columns */
 .tbento {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: 1.1fr 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
   gap: 16px;
+  align-items: stretch;
 }
+
+/* Column wrappers for cols 2-4 */
+.tbento-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 440px;
+}
+
+/* Author card = flex: 1 (1/4), Quote card = flex: 3 (3/4) */
+.tbento-col > .tbento-card:first-child { flex: 1; }
+.tbento-col > .tbento-card:last-child  { flex: 3; }
+
+/* Inverted column: quote (large) on top, author (small) on bottom */
+.tbento-col--inv > .tbento-card:first-child { flex: 3; }
+.tbento-col--inv > .tbento-card:last-child  { flex: 1; }
 
 /* Base card */
 .tbento-card {
@@ -883,17 +907,16 @@ cite { font-style: normal; }
   display: flex;
   flex-direction: column;
   gap: 14px;
+  overflow: hidden;
 }
 
-/* Stat card — col 1, spans 2 rows */
+/* Stat card — col 1, full height */
 .tbento-stat {
-  grid-column: 1;
-  grid-row: 1 / 3;
   background: #111111;
   border-color: #111111;
   color: #ffffff;
   justify-content: space-between;
-  min-height: 380px;
+  grid-row: 1;
 }
 
 .tbento-rating-wrap {
@@ -933,7 +956,6 @@ cite { font-style: normal; }
 .tbento-stack-wrap {
   display: flex;
   align-items: center;
-  gap: 0;
 }
 .tbento-stack-wrap .t-avatar { margin-right: -8px; border: 2px solid #111111; }
 .tbento-stack-count {
@@ -965,13 +987,8 @@ cite { font-style: normal; }
 }
 .tbento-cta-btn:hover { opacity: 0.88; }
 
-/* Author card */
-.tbento-author-card {
-  justify-content: flex-end;
-}
-.tbento-author-bottom {
-  justify-content: flex-start;
-}
+/* Author card — centers content vertically */
+.tbento-author-card { justify-content: center; }
 .tbento-author-head {
   display: flex;
   align-items: center;
@@ -989,22 +1006,11 @@ cite { font-style: normal; }
 
 /* Quote card */
 .tbento-quote-card { justify-content: center; }
-.tbento-quote-top { grid-column: 3; grid-row: 1; }
-
 .tbento-quote-text {
   font-size: 15px;
   line-height: 1.65;
   color: var(--c-text);
   font-weight: 500;
-}
-.tbento-quote-author {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 4px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--c-text-2);
 }
 
 /* Stars */
@@ -1023,31 +1029,24 @@ cite { font-style: normal; }
   font-weight: 700;
   color: #ffffff;
   flex-shrink: 0;
-  font-size: 11px;
 }
 .t-avatar-sm { width: 28px; height: 28px; font-size: 10px; }
 .t-avatar-md { width: 36px; height: 36px; font-size: 12px; }
 .t-avatar-lg { width: 44px; height: 44px; font-size: 14px; }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .tbento {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
   }
-  .tbento-stat {
-    grid-column: 1 / 3;
-    grid-row: 1;
-    min-height: auto;
-  }
-  .tbento-quote-top { grid-column: auto; grid-row: auto; }
+  .tbento-stat { grid-column: 1 / 3; grid-row: 1; }
+  .tbento-col { min-height: 360px; }
 }
 
 @media (max-width: 560px) {
-  .tbento {
-    grid-template-columns: 1fr;
-  }
+  .tbento { grid-template-columns: 1fr; }
   .tbento-stat { grid-column: 1; }
+  .tbento-col { min-height: 300px; }
 }
 
 /* ============================================================

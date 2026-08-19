@@ -36,7 +36,7 @@ const STACK = ['LM', 'SR', 'NF', 'DK', 'EL', 'KB'];
 export default function Testimonials() {
   return (
     <section className="testimonials-section" id="avis" aria-label="Témoignages">
-      <div className="container">
+      <div className="tbento-container">
 
         {/* Header */}
         <div className="tbento-header">
@@ -52,7 +52,7 @@ export default function Testimonials() {
         {/* Bento grid */}
         <div className="tbento">
 
-          {/* ── Col 1 — Stat card (spans both rows) ── */}
+          {/* ── Col 1 — Stat card ── */}
           <div className="tbento-card tbento-stat">
             <div className="tbento-rating-wrap">
               <span className="tbento-rating-num">4.8</span>
@@ -73,69 +73,60 @@ export default function Testimonials() {
             <a href="#install" className="tbento-cta-btn">Commencer gratuitement</a>
           </div>
 
-          {/* ── Col 2 — Author top ── */}
-          <div className="tbento-card tbento-author-card">
-            <div className="tbento-author-head">
-              <TAvatar initials="LM" size="lg" />
-              <div>
-                <p className="tbento-author-name">Lucas M.</p>
-                <p className="tbento-author-sub">@lucasm_sol</p>
+          {/* ── Col 2 — Author (small/top) + Quote (large/bottom) ── */}
+          <div className="tbento-col">
+            <div className="tbento-card tbento-author-card">
+              <div className="tbento-author-head">
+                <TAvatar initials="LM" size="lg" />
+                <div>
+                  <p className="tbento-author-name">Lucas M.</p>
+                  <p className="tbento-author-sub">@lucasm_sol</p>
+                </div>
               </div>
             </div>
-            <Stars />
-          </div>
-
-          {/* ── Col 3 — Quote top ── */}
-          <div className="tbento-card tbento-quote-card tbento-quote-top">
-            <p className="tbento-quote-text">
-              &ldquo;Mon win rate simulé est passé de 41&nbsp;% à 67&nbsp;% en un mois. La confiance vient de la répétition.&rdquo;
-            </p>
-          </div>
-
-          {/* ── Col 4 — Author top ── */}
-          <div className="tbento-card tbento-author-card">
-            <div className="tbento-author-head">
-              <TAvatar initials="SR" size="lg" />
-              <div>
-                <p className="tbento-author-name">Sophie R.</p>
-                <p className="tbento-author-sub">@sophie_trades</p>
-              </div>
-            </div>
-            <Stars />
-          </div>
-
-          {/* ── Col 2 — Quote bottom ── */}
-          <div className="tbento-card tbento-quote-card">
-            <Stars />
-            <p className="tbento-quote-text">
-              &ldquo;J&rsquo;ai enfin compris ma gestion du risque sans cramer un seul euro. Le wallet virtuel change tout.&rdquo;
-            </p>
-            <div className="tbento-quote-author">
-              <TAvatar initials="LM" size="sm" />
-              <span>Lucas M.</span>
+            <div className="tbento-card tbento-quote-card">
+              <Stars />
+              <p className="tbento-quote-text">
+                &ldquo;J&rsquo;ai enfin compris ma gestion du risque sans cramer un seul euro. Le wallet virtuel change tout.&rdquo;
+              </p>
             </div>
           </div>
 
-          {/* ── Col 3 — Author bottom ── */}
-          <div className="tbento-card tbento-author-card tbento-author-bottom">
-            <Stars />
-            <div className="tbento-author-head">
-              <TAvatar initials="DK" size="lg" />
-              <div>
-                <p className="tbento-author-name">0xDegen_K</p>
-                <p className="tbento-author-sub">@0xdegen_k</p>
+          {/* ── Col 3 — Quote (large/top) + Author (small/bottom) — inverted ── */}
+          <div className="tbento-col tbento-col--inv">
+            <div className="tbento-card tbento-quote-card">
+              <Stars />
+              <p className="tbento-quote-text">
+                &ldquo;Mon win rate simulé est passé de 41&nbsp;% à 67&nbsp;% en un mois. La confiance vient de la répétition.&rdquo;
+              </p>
+            </div>
+            <div className="tbento-card tbento-author-card">
+              <div className="tbento-author-head">
+                <TAvatar initials="SR" size="lg" />
+                <div>
+                  <p className="tbento-author-name">Sophie R.</p>
+                  <p className="tbento-author-sub">@sophie_trades</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* ── Col 4 — Quote bottom ── */}
-          <div className="tbento-card tbento-quote-card">
-            <p className="tbento-quote-text">
-              &ldquo;Je me suis entraîné 6 semaines avant de passer en réel. Meilleure décision de mon année crypto.&rdquo;
-            </p>
-            <div className="tbento-quote-author">
-              <TAvatar initials="NF" size="sm" />
-              <span>Naima F.</span>
+          {/* ── Col 4 — Author (small/top) + Quote (large/bottom) ── */}
+          <div className="tbento-col">
+            <div className="tbento-card tbento-author-card">
+              <div className="tbento-author-head">
+                <TAvatar initials="DK" size="lg" />
+                <div>
+                  <p className="tbento-author-name">0xDegen_K</p>
+                  <p className="tbento-author-sub">@0xdegen_k</p>
+                </div>
+              </div>
+            </div>
+            <div className="tbento-card tbento-quote-card">
+              <Stars />
+              <p className="tbento-quote-text">
+                &ldquo;Je me suis entraîné 6 semaines avant de passer en réel. Meilleure décision de mon année crypto.&rdquo;
+              </p>
             </div>
           </div>
 
