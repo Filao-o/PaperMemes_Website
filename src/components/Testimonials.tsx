@@ -38,18 +38,16 @@ interface T {
   quote: string;
 }
 
-// 2 slides × 3 columns × 2 reviews = 12 reviews total
 const SLIDES: T[][][] = [
-  // Slide 1
   [
     [
       {
         id: 't1', initials: 'LM', name: 'Lucas M.', handle: '@lucasm_sol',
-        quote: "J’ai enfin compris ma gestion du risque sans cramer un seul euro. Le wallet virtuel change tout. Je rejoue les mêmes setups encore et encore jusqu’à ce qu’ils deviennent un réflexe.",
+        quote: "J'ai enfin compris ma gestion du risque sans cramer un seul euro. Le wallet virtuel change tout. Je rejoue les mêmes setups encore et encore jusqu'à ce qu'ils deviennent un réflexe.",
       },
       {
         id: 't2', initials: 'SR', name: 'Sophie R.', handle: '@sophie_trades',
-        quote: "Mon win rate simulé est passé de 41 % à 67 % en un mois. La confiance vient de la répétition.",
+        quote: "Mon win rate simulé est passé de 41 % à 67 % en un mois. La confiance vient de la répétition.",
       },
     ],
     [
@@ -59,26 +57,25 @@ const SLIDES: T[][][] = [
       },
       {
         id: 't4', initials: 'NF', name: 'Naima F.', handle: '@naima_defi',
-        quote: "PaperMemes m’a permis de comprendre les patterns de pump sans risquer mes économies. Indispensable pour tout débutant sérieux.",
+        quote: "PaperMemes m'a permis de comprendre les patterns de pump sans risquer mes économies. Indispensable pour tout débutant sérieux.",
       },
     ],
     [
       {
         id: 't5', initials: 'EL', name: 'Emma L.', handle: '@emma_sol',
-        quote: "Simple, efficace, gratuit. Que demander de plus ?",
+        quote: "Simple, efficace, gratuit. Que demander de plus ?",
       },
       {
         id: 't6', initials: 'KB', name: 'Kevin B.', handle: '@kb_onchain',
-        quote: "Le meilleur outil pour passer du FOMO à une vraie stratégie. J’avais peur de rater des opportunités en attendant. En réalité PaperMemes m’a fait réaliser que je tradais trop souvent. Maintenant je suis patient et mes résultats parlent.",
+        quote: "Le meilleur outil pour passer du FOMO à une vraie stratégie. J'avais peur de rater des opportunités en attendant. En réalité PaperMemes m'a fait réaliser que je tradais trop souvent. Maintenant je suis patient et mes résultats parlent.",
       },
     ],
   ],
-  // Slide 2
   [
     [
       {
         id: 't7', initials: 'TR', name: 'Thomas R.', handle: '@thomasr_onchain',
-        quote: "La gamification aide vraiment. Tu veux battre ton propre record, tu rejoues encore et encore. Sans t’en rendre compte, tu intègres les patterns du marché Solana en profondeur.",
+        quote: "La gamification aide vraiment. Tu veux battre ton propre record, tu rejoues encore et encore. Sans t'en rendre compte, tu intègres les patterns du marché Solana en profondeur.",
       },
       {
         id: 't8', initials: 'AV', name: 'Alex V.', handle: '@alexv_defi',
@@ -88,11 +85,11 @@ const SLIDES: T[][][] = [
     [
       {
         id: 't9', initials: 'MR', name: 'Maxime R.', handle: '@maxr_crypto',
-        quote: "Mon portefeuille virtuel était en +340 % après 6 semaines. J’ai décidé de passer en réel avec une vraie confiance, pas de l’arrogance.",
+        quote: "Mon portefeuille virtuel était en +340 % après 6 semaines. J'ai décidé de passer en réel avec une vraie confiance, pas de l'arrogance.",
       },
       {
         id: 't10', initials: 'JC', name: 'Julie C.', handle: '@juliec_sol',
-        quote: "Avant PaperMemes je perdais sur chaque trade. Maintenant je comprends la structure du marché, je gère mon risque et j’ai une stratégie claire. C’est le meilleur investissement de temps que j’ai fait.",
+        quote: "Avant PaperMemes je perdais sur chaque trade. Maintenant je comprends la structure du marché, je gère mon risque et j'ai une stratégie claire. C'est le meilleur investissement de temps que j'ai fait.",
       },
     ],
     [
@@ -102,37 +99,76 @@ const SLIDES: T[][][] = [
       },
       {
         id: 't12', initials: 'SC', name: 'Sara C.', handle: '@sarac_web3',
-        quote: "Je n’arrivais pas à tenir mes stop-loss. Après 3 semaines sur PaperMemes à simuler des entrées et sorties, ça devient un réflexe. Je ne rate plus mes exits.",
+        quote: "Je n'arrivais pas à tenir mes stop-loss. Après 3 semaines sur PaperMemes à simuler des entrées et sorties, ça devient un réflexe. Je ne rate plus mes exits.",
       },
     ],
   ],
 ];
 
 const STACK = ['LM', 'SR', 'NF', 'DK', 'EL', 'KB'];
+const CLAMP = 130;
 
-function TCard({ t, flexVal }: { t: T; flexVal: number }) {
+function TModal({ t, onClose }: { t: T; onClose: () => void }) {
   return (
-    <div className="tbento-tcard" style={{ flex: `${flexVal} 1 0` }}>
-      <div className="tbento-tcard-head">
-        <TAvatar initials={t.initials} size="md" />
-        <div>
-          <p className="tbento-tcard-name">{t.name}</p>
-          <p className="tbento-tcard-handle">{t.handle}</p>
+    <div
+      className="tbento-modal-overlay"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Avis de ${t.name}`}
+    >
+      <div className="tbento-modal" onClick={e => e.stopPropagation()}>
+        <button className="tbento-modal-close" onClick={onClose} aria-label="Fermer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <div className="tbento-modal-head">
+          <TAvatar initials={t.initials} size="lg" />
+          <div>
+            <p className="tbento-modal-name">{t.name}</p>
+            <p className="tbento-modal-handle">{t.handle}</p>
+          </div>
         </div>
+        <Stars />
+        <p className="tbento-modal-quote">{t.quote}</p>
       </div>
-      <Stars />
-      <p className="tbento-tcard-quote">{t.quote}</p>
     </div>
   );
 }
 
+function TCard({ t }: { t: T }) {
+  const [open, setOpen] = useState(false);
+  const isLong = t.quote.length > CLAMP;
+  const displayed = isLong ? t.quote.slice(0, CLAMP).trimEnd() + '…' : t.quote;
+
+  return (
+    <>
+      <div className="tbento-tcard">
+        <div className="tbento-tcard-head">
+          <TAvatar initials={t.initials} size="md" />
+          <div>
+            <p className="tbento-tcard-name">{t.name}</p>
+            <p className="tbento-tcard-handle">{t.handle}</p>
+          </div>
+        </div>
+        <Stars />
+        <p className="tbento-tcard-quote">{displayed}</p>
+        {isLong && (
+          <button className="tbento-read-more" onClick={() => setOpen(true)}>
+            Lire la suite
+          </button>
+        )}
+      </div>
+      {open && <TModal t={t} onClose={() => setOpen(false)} />}
+    </>
+  );
+}
+
 function TCol({ pair }: { pair: [T, T] }) {
-  const total = pair[0].quote.length + pair[1].quote.length;
   return (
     <div className="tbento-col">
-      {pair.map(t => (
-        <TCard key={t.id} t={t} flexVal={t.quote.length / total * 100} />
-      ))}
+      {pair.map(t => <TCard key={t.id} t={t} />)}
     </div>
   );
 }
@@ -145,7 +181,6 @@ export default function Testimonials() {
     <section className="testimonials-section" id="avis" aria-label="Témoignages">
       <div className="tbento-container">
 
-        {/* Header */}
         <div className="tbento-header">
           <div className="tbento-header-left">
             <div className="tbento-label">
@@ -181,10 +216,7 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Grid */}
         <div className="tbento">
-
-          {/* Stat card */}
           <div className="tbento-card tbento-stat">
             <div className="tbento-rating-wrap">
               <span className="tbento-rating-num">4.8</span>
@@ -202,7 +234,6 @@ export default function Testimonials() {
             <a href="#install" className="tbento-cta-btn">Commencer gratuitement</a>
           </div>
 
-          {/* Slider */}
           <div className="tbento-slider-wrap" aria-live="polite">
             <div
               className="tbento-slider-track"
@@ -217,8 +248,8 @@ export default function Testimonials() {
               ))}
             </div>
           </div>
-
         </div>
+
       </div>
     </section>
   );
