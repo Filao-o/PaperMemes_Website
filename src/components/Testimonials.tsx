@@ -1,127 +1,144 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+const AVATAR_COLORS: Record<string, string> = {
+  'LM': '#16a34a',
+  'DK': '#dc2626',
+  'SR': '#2563eb',
+  'NF': '#d97706',
+  'EL': '#9333ea',
+  'KB': '#0891b2',
+};
 
-type Review = { text: string; name: string; handle: string };
+const Stars = () => (
+  <div className="t-stars" aria-label="5 étoiles sur 5">
+    {[...Array(5)].map((_, i) => (
+      <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+    ))}
+  </div>
+);
 
-const REVIEWS: Review[] = [
-  { text: "J'ai enfin compris ma gestion du risque sans cramer un seul euro. Le wallet virtuel change tout.", name: 'Lucas M.', handle: '@lucasm_sol' },
-  { text: "Mon win rate simulé est passé de 41% à 67% en un mois. La confiance vient de la répétition.", name: '0xDegen_K', handle: '@0xdegen_k' },
-  { text: "Le rugcheck intégré m'a évité au moins trois pièges évidents. Indispensable avant chaque entrée.", name: 'Sophie R.', handle: '@sophie_trades' },
-  { text: "Parfait pour tester des stratégies TP/SL sans stress. Je rejoue mes erreurs jusqu'à les comprendre.", name: 'Karim B.', handle: '@karim_b' },
-  { text: "Des vrais prix, zéro risque : c'est exactement ce qu'il me fallait pour débuter les memecoins.", name: 'Emma L.', handle: '@emma_l' },
-  { text: "L'historique filtrable est génial pour analyser mes pires trades et arrêter de les répéter.", name: 'Théo G.', handle: '@theo_gg' },
-  { text: "Je me suis entraîné 6 semaines avant de passer en réel. Meilleure décision de mon année crypto.", name: 'Naima F.', handle: '@naima_f' },
-  { text: "Le calendrier de performances m'a montré que je tradais mal le week-end. Data > feeling.", name: 'Antoine P.', handle: '@antoinep' },
-  { text: "Enfin un simulateur qui colle au marché réel des memecoins Solana. Le TP auto est top.", name: 'Yanis D.', handle: '@yanis_sol' },
-  { text: "J'ai appris à couper mes pertes vite. En démo ça coûte rien, en réel ça sauve un portefeuille.", name: 'Clara V.', handle: '@clara_v' },
-  { text: "Le widget détachable est super pratique, je garde mes positions à l'œil en permanence.", name: 'Hugo N.', handle: '@hugo_n' },
-  { text: "Passé de zéro connaissance à profitable en démo. La courbe d'apprentissage est douce.", name: 'Inès B.', handle: '@ines_b' },
-  { text: "Ce que j'aime : aucune pression. J'expérimente des setups agressifs sans conséquence.", name: 'Maxime T.', handle: '@maxime_t' },
-  { text: "Les stats de PnL et win rate me donnent une vraie lecture de ma progression semaine après semaine.", name: 'Julie H.', handle: '@julie_h' },
-  { text: "Franchement bluffé par le réalisme des prix. On oublie presque que c'est de la simulation.", name: 'Rayan S.', handle: '@rayan_s' },
-  { text: "J'ai backtesté ma stratégie sur des dizaines de tokens. Résultat : je sais où j'ai un edge.", name: 'Camille A.', handle: '@camille_a' },
-  { text: "Le meilleur outil pour apprendre la discipline. Mes entrées sont bien plus propres maintenant.", name: 'Nathan O.', handle: '@nathan_o' },
-  { text: "Débuter les memecoins sans se faire liquider dès la première semaine : c'est possible ici.", name: 'Léa C.', handle: '@lea_c' },
-  { text: "Les presets de Take Profit à +50% et +100% m'ont appris à sécuriser mes gains à temps.", name: 'Bilal M.', handle: '@bilal_m' },
-  { text: "Je recommande à tous mes potes qui veulent trade sans y laisser leur salaire. Bluffant.", name: 'Océane R.', handle: '@oceane_r' },
-  { text: "Le suivi des entrées position par position est ultra clair. Je sais exactement où j'en suis.", name: 'Adam K.', handle: '@adam_k' },
-  { text: "Zéro dépôt, zéro connexion wallet, juste de l'entraînement pur. Setup en deux minutes.", name: 'Manon D.', handle: '@manon_d' },
-  { text: "J'ai compris pourquoi je perdais : je tradais l'émotion. La démo m'a mis ça sous les yeux.", name: 'Elias V.', handle: '@elias_v' },
-  { text: "Après 200 trades simulés, mon exécution est devenue mécanique. Exactement le but.", name: 'Sarah B.', handle: '@sarah_b' },
-  { text: "Le drawdown fait moins peur quand tu l'as déjà vécu cent fois en démo. Mental blindé.", name: 'Romain L.', handle: '@romain_l' },
-  { text: "Interface claire, prix réels, aucune arnaque. Enfin un outil honnête pour progresser.", name: 'Aya T.', handle: '@aya_t' },
-  { text: "J'ai testé le stop loss à -10% systématique pendant un mois. Ma courbe s'est lissée direct.", name: 'Victor M.', handle: '@victor_m' },
-  { text: "Idéal pour comprendre la volatilité des memecoins avant de risquer du vrai capital.", name: 'Nour H.', handle: '@nour_h' },
-  { text: "Le classement me motive à m'améliorer chaque semaine. Un peu de compétition, ça pousse.", name: 'Gabriel P.', handle: '@gabriel_p' },
-  { text: "Je ne passe plus un trade réel sans avoir validé le setup en démo avant. Game changer.", name: 'Lina S.', handle: '@lina_s' },
-];
-
-const AVATAR_COLORS = ['#16a34a', '#dc2626', '#2563eb', '#d97706', '#9333ea', '#0891b2', '#ea580c', '#db2777'];
-
-function initials(name: string) {
-  return name.split(' ').map(p => p[0]).join('').slice(0, 2).toUpperCase();
-}
-function colorFor(name: string) {
-  let h = 0;
-  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
-  return AVATAR_COLORS[h % AVATAR_COLORS.length];
-}
-
-function Avatar({ n, name }: { n: number; name: string }) {
-  const [failed, setFailed] = useState(false);
-  if (failed) {
-    return (
-      <span className="tcard-avatar" style={{ background: colorFor(name) }} aria-hidden="true">
-        {initials(name)}
-      </span>
-    );
-  }
+function TAvatar({ initials, size = 'md' }: { initials: string; size?: 'sm' | 'md' | 'lg' }) {
   return (
-    <Image
-      className="tcard-avatar tcard-avatar--img"
-      src={`/reviewprofile/${n}.jpg`}
-      alt=""
-      width={40}
-      height={40}
-      onError={() => setFailed(true)}
-    />
+    <span
+      className={`t-avatar t-avatar-${size}`}
+      style={{ background: AVATAR_COLORS[initials] ?? '#555' }}
+      aria-hidden="true"
+    >
+      {initials}
+    </span>
   );
 }
 
+const STACK = ['LM', 'SR', 'NF', 'DK', 'EL', 'KB'];
+
 export default function Testimonials() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const pausedRef = useRef(false);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    let pos = 0;
-    let raf = 0;
-    let last = performance.now();
-    const SPEED = 45; // px/seconde
-
-    const step = (now: number) => {
-      const dt = Math.min((now - last) / 1000, 0.05);
-      last = now;
-      if (!pausedRef.current) {
-        pos -= SPEED * dt;
-        const half = track.scrollWidth / 2;
-        if (half > 0 && pos <= -half) pos += half;
-        track.style.transform = `translateX(${pos}px)`;
-      }
-      raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
-  const cards = [...REVIEWS, ...REVIEWS];
-
   return (
     <section className="testimonials-section" id="avis" aria-label="Témoignages">
-      <div
-        className="tmarquee"
-        onMouseEnter={() => { pausedRef.current = true; }}
-        onMouseLeave={() => { pausedRef.current = false; }}
-      >
-        <div ref={trackRef} className="tmarquee-track">
-          {cards.map((r, i) => (
-            <article key={i} className="tcard" aria-hidden={i >= REVIEWS.length ? 'true' : undefined}>
-              <svg className="tcard-quote" width="36" height="36" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M9.5 6C6.5 6 4 8.5 4 11.5V18h6v-6H7c0-1.7 1.3-3 3-3V6zm10 0c-3 0-5.5 2.5-5.5 5.5V18h6v-6h-3c0-1.7 1.3-3 3-3V6z" />
-              </svg>
-              <p className="tcard-text">{r.text}</p>
-              <footer className="tcard-author">
-                <Avatar n={(i % REVIEWS.length) + 1} name={r.name} />
-                <span className="tcard-meta">
-                  <cite className="tcard-name">{r.name}</cite>
-                  <span className="tcard-handle">{r.handle}</span>
-                </span>
-              </footer>
-            </article>
-          ))}
+      <div className="container">
+
+        {/* Header */}
+        <div className="tbento-header">
+          <div className="tbento-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+            </svg>
+            Testimonials
+          </div>
+          <h2 className="tbento-title">Expériences<span className="tbento-dot">.</span></h2>
+        </div>
+
+        {/* Bento grid */}
+        <div className="tbento">
+
+          {/* ── Col 1 — Stat card (spans both rows) ── */}
+          <div className="tbento-card tbento-stat">
+            <div className="tbento-rating-wrap">
+              <span className="tbento-rating-num">4.8</span>
+              <span className="tbento-rating-denom">/5</span>
+            </div>
+            <p className="tbento-stat-desc">
+              Des traders qui progressent grâce à la simulation sur de <strong>vrais prix</strong> de marché Solana.
+            </p>
+
+            <div className="tbento-brand">PaperMemes</div>
+
+            <div className="tbento-stack-wrap">
+              {STACK.map(i => <TAvatar key={i} initials={i} size="sm" />)}
+              <span className="tbento-stack-count">+2k</span>
+            </div>
+            <p className="tbento-trusted">Trusted by traders worldwide</p>
+
+            <a href="#install" className="tbento-cta-btn">Commencer gratuitement</a>
+          </div>
+
+          {/* ── Col 2 — Author top ── */}
+          <div className="tbento-card tbento-author-card">
+            <div className="tbento-author-head">
+              <TAvatar initials="LM" size="lg" />
+              <div>
+                <p className="tbento-author-name">Lucas M.</p>
+                <p className="tbento-author-sub">@lucasm_sol</p>
+              </div>
+            </div>
+            <Stars />
+          </div>
+
+          {/* ── Col 3 — Quote top ── */}
+          <div className="tbento-card tbento-quote-card tbento-quote-top">
+            <p className="tbento-quote-text">
+              &ldquo;Mon win rate simulé est passé de 41&nbsp;% à 67&nbsp;% en un mois. La confiance vient de la répétition.&rdquo;
+            </p>
+          </div>
+
+          {/* ── Col 4 — Author top ── */}
+          <div className="tbento-card tbento-author-card">
+            <div className="tbento-author-head">
+              <TAvatar initials="SR" size="lg" />
+              <div>
+                <p className="tbento-author-name">Sophie R.</p>
+                <p className="tbento-author-sub">@sophie_trades</p>
+              </div>
+            </div>
+            <Stars />
+          </div>
+
+          {/* ── Col 2 — Quote bottom ── */}
+          <div className="tbento-card tbento-quote-card">
+            <Stars />
+            <p className="tbento-quote-text">
+              &ldquo;J&rsquo;ai enfin compris ma gestion du risque sans cramer un seul euro. Le wallet virtuel change tout.&rdquo;
+            </p>
+            <div className="tbento-quote-author">
+              <TAvatar initials="LM" size="sm" />
+              <span>Lucas M.</span>
+            </div>
+          </div>
+
+          {/* ── Col 3 — Author bottom ── */}
+          <div className="tbento-card tbento-author-card tbento-author-bottom">
+            <Stars />
+            <div className="tbento-author-head">
+              <TAvatar initials="DK" size="lg" />
+              <div>
+                <p className="tbento-author-name">0xDegen_K</p>
+                <p className="tbento-author-sub">@0xdegen_k</p>
+              </div>
+            </div>
+          </div>
+
+          {/* ── Col 4 — Quote bottom ── */}
+          <div className="tbento-card tbento-quote-card">
+            <p className="tbento-quote-text">
+              &ldquo;Je me suis entraîné 6 semaines avant de passer en réel. Meilleure décision de mon année crypto.&rdquo;
+            </p>
+            <div className="tbento-quote-author">
+              <TAvatar initials="NF" size="sm" />
+              <span>Naima F.</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
