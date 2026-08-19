@@ -946,14 +946,6 @@ cite { font-style: normal; }
   height: 100%;
 }
 
-/* Author card = flex: 1 (1/5), Quote card = flex: 4 (4/5) */
-.tbento-col > .tbento-card:first-child { flex: 1; }
-.tbento-col > .tbento-card:last-child  { flex: 4; }
-
-/* Inverted column: quote (large) on top, author (small) on bottom */
-.tbento-col--inv > .tbento-card:first-child { flex: 4; }
-.tbento-col--inv > .tbento-card:last-child  { flex: 1; }
-
 /* Base card */
 .tbento-card {
   background: var(--c-bg-2);
@@ -1042,30 +1034,38 @@ cite { font-style: normal; }
 }
 .tbento-cta-btn:hover { opacity: 0.88; }
 
-/* Author card — centers content vertically */
-.tbento-author-card { justify-content: center; }
-.tbento-author-head {
+/* Unified testimonial card — avatar + name + stars + quote */
+.tbento-tcard {
+  background: var(--c-bg-2);
+  border: 1px solid var(--c-border);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+.tbento-tcard-head {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-.tbento-author-name {
-  font-size: 15px;
+.tbento-tcard-name {
+  font-size: 14px;
   font-weight: 700;
   color: var(--c-text);
+  line-height: 1.2;
 }
-.tbento-author-sub {
-  font-size: 13px;
+.tbento-tcard-handle {
+  font-size: 12px;
   color: var(--c-text-3);
 }
-
-/* Quote card */
-.tbento-quote-card { justify-content: center; }
-.tbento-quote-text {
-  font-size: 15px;
+.tbento-tcard-quote {
+  font-size: 14px;
   line-height: 1.65;
-  color: var(--c-text);
-  font-weight: 500;
+  color: var(--c-text-2);
+  font-weight: 400;
+  flex: 1;
 }
 
 /* Stars */

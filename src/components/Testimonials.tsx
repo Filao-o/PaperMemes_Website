@@ -3,21 +3,15 @@
 import { useState } from 'react';
 
 const AVATAR_COLORS: Record<string, string> = {
-  'LM': '#16a34a',
-  'DK': '#dc2626',
-  'SR': '#2563eb',
-  'NF': '#d97706',
-  'EL': '#9333ea',
-  'KB': '#0891b2',
-  'TR': '#be185d',
-  'AV': '#0e7490',
-  'MR': '#854d0e',
+  'LM': '#16a34a', 'DK': '#dc2626', 'SR': '#2563eb', 'NF': '#d97706',
+  'EL': '#9333ea', 'KB': '#0891b2', 'TR': '#be185d', 'AV': '#0e7490',
+  'MR': '#854d0e', 'JC': '#7c3aed', 'PL': '#047857', 'SC': '#b45309',
 };
 
 const Stars = () => (
   <div className="t-stars" aria-label="5 étoiles sur 5">
     {[...Array(5)].map((_, i) => (
-      <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
       </svg>
     ))}
@@ -36,79 +30,109 @@ function TAvatar({ initials, size = 'md' }: { initials: string; size?: 'sm' | 'm
   );
 }
 
-interface Testimonial {
+interface T {
+  id: string;
   initials: string;
   name: string;
   handle: string;
   quote: string;
 }
 
-const SLIDES: Testimonial[][] = [
+// 2 slides × 3 columns × 2 reviews = 12 reviews total
+const SLIDES: T[][][] = [
+  // Slide 1
   [
-    {
-      initials: 'LM',
-      name: 'Lucas M.',
-      handle: '@lucasm_sol',
-      quote: '&ldquo;J&rsquo;ai enfin compris ma gestion du risque sans cramer un seul euro. Le wallet virtuel change tout.&rdquo;',
-    },
-    {
-      initials: 'SR',
-      name: 'Sophie R.',
-      handle: '@sophie_trades',
-      quote: '&ldquo;Mon win rate simulé est passé de 41&nbsp;% à 67&nbsp;% en un mois. La confiance vient de la répétition.&rdquo;',
-    },
-    {
-      initials: 'DK',
-      name: '0xDegen_K',
-      handle: '@0xdegen_k',
-      quote: '&ldquo;Je me suis entraîné 6 semaines avant de passer en réel. Meilleure décision de mon année crypto.&rdquo;',
-    },
+    [
+      {
+        id: 't1', initials: 'LM', name: 'Lucas M.', handle: '@lucasm_sol',
+        quote: 'J'ai enfin compris ma gestion du risque sans cramer un seul euro. Le wallet virtuel change tout. Je rejoue les mêmes setups encore et encore jusqu'à ce qu'ils deviennent un réflexe.',
+      },
+      {
+        id: 't2', initials: 'SR', name: 'Sophie R.', handle: '@sophie_trades',
+        quote: 'Mon win rate simulé est passé de 41 % à 67 % en un mois. La confiance vient de la répétition.',
+      },
+    ],
+    [
+      {
+        id: 't3', initials: 'DK', name: '0xDegen_K', handle: '@0xdegen_k',
+        quote: 'Je me suis entraîné 6 semaines avant de passer en réel. Meilleure décision de mon année crypto. Mon premier vrai trade était rentable.',
+      },
+      {
+        id: 't4', initials: 'NF', name: 'Naima F.', handle: '@naima_defi',
+        quote: 'PaperMemes m'a permis de comprendre les patterns de pump sans risquer mes économies. Indispensable pour tout débutant sérieux.',
+      },
+    ],
+    [
+      {
+        id: 't5', initials: 'EL', name: 'Emma L.', handle: '@emma_sol',
+        quote: 'Simple, efficace, gratuit. Que demander de plus ?',
+      },
+      {
+        id: 't6', initials: 'KB', name: 'Kevin B.', handle: '@kb_onchain',
+        quote: 'Le meilleur outil pour passer du FOMO à une vraie stratégie. J'avais peur de rater des opportunités en attendant. En réalité PaperMemes m'a fait réaliser que je tradais trop souvent. Maintenant je suis patient et mes résultats parlent.',
+      },
+    ],
   ],
+  // Slide 2
   [
-    {
-      initials: 'NF',
-      name: 'Naima F.',
-      handle: '@naima_defi',
-      quote: '&ldquo;PaperMemes m&rsquo;a permis de saisir les patterns de pump sans risquer mes économies. Indispensable.&rdquo;',
-    },
-    {
-      initials: 'EL',
-      name: 'Emma L.',
-      handle: '@emma_sol',
-      quote: '&ldquo;Trois semaines de simulation et je gère maintenant mes positions avec une clarté que je n&rsquo;avais jamais eue.&rdquo;',
-    },
-    {
-      initials: 'KB',
-      name: 'Kevin B.',
-      handle: '@kb_onchain',
-      quote: '&ldquo;Le meilleur outil pour passer du FOMO à une vraie stratégie. Je ne trade plus à l&rsquo;aveugle.&rdquo;',
-    },
+    [
+      {
+        id: 't7', initials: 'TR', name: 'Thomas R.', handle: '@thomasr_onchain',
+        quote: 'La gamification aide vraiment. Tu veux battre ton propre record, tu rejoues encore et encore. Sans t'en rendre compte, tu intègres les patterns du marché Solana en profondeur.',
+      },
+      {
+        id: 't8', initials: 'AV', name: 'Alex V.', handle: '@alexv_defi',
+        quote: 'Parfait pour apprendre sans se brûler les doigts dès le départ.',
+      },
+    ],
+    [
+      {
+        id: 't9', initials: 'MR', name: 'Maxime R.', handle: '@maxr_crypto',
+        quote: 'Mon portefeuille virtuel était en +340 % après 6 semaines. J'ai décidé de passer en réel avec une vraie confiance, pas de l'arrogance.',
+      },
+      {
+        id: 't10', initials: 'JC', name: 'Julie C.', handle: '@juliec_sol',
+        quote: 'Avant PaperMemes je perdais sur chaque trade. Maintenant je comprends la structure du marché, je gère mon risque et j'ai une stratégie claire. C'est le meilleur investissement de temps que j'ai fait.',
+      },
+    ],
+    [
+      {
+        id: 't11', initials: 'PL', name: 'Pierre L.', handle: '@pierrel_memes',
+        quote: 'La simulation sur vrais prix change tout. Je comprends enfin pourquoi mes anciens trades échouaient et ce que je dois corriger.',
+      },
+      {
+        id: 't12', initials: 'SC', name: 'Sara C.', handle: '@sarac_web3',
+        quote: 'Je n'arrivais pas à tenir mes stop-loss. Après 3 semaines sur PaperMemes à simuler des entrées et sorties, ça devient un réflexe. Je ne rate plus mes exits.',
+      },
+    ],
   ],
 ];
 
 const STACK = ['LM', 'SR', 'NF', 'DK', 'EL', 'KB'];
 
-function TestimonialCol({ t, inverted }: { t: Testimonial; inverted: boolean }) {
+function TCard({ t, flexVal }: { t: T; flexVal: number }) {
   return (
-    <div className={`tbento-col${inverted ? ' tbento-col--inv' : ''}`}>
-      {/* Author card (small) */}
-      <div className="tbento-card tbento-author-card">
-        <div className="tbento-author-head">
-          <TAvatar initials={t.initials} size="lg" />
-          <div>
-            <p className="tbento-author-name">{t.name}</p>
-            <p className="tbento-author-sub">{t.handle}</p>
-          </div>
+    <div className="tbento-tcard" style={{ flex: `${flexVal} 1 0` }}>
+      <div className="tbento-tcard-head">
+        <TAvatar initials={t.initials} size="md" />
+        <div>
+          <p className="tbento-tcard-name">{t.name}</p>
+          <p className="tbento-tcard-handle">{t.handle}</p>
         </div>
       </div>
-      {/* Quote card (large) */}
-      <div className="tbento-card tbento-quote-card">
-        <Stars />
-        <p
-          className="tbento-quote-text"
-          dangerouslySetInnerHTML={{ __html: t.quote }}
-        />
-      </div>
+      <Stars />
+      <p className="tbento-tcard-quote">{t.quote}</p>
+    </div>
+  );
+}
+
+function TCol({ pair }: { pair: [T, T] }) {
+  const total = pair[0].quote.length + pair[1].quote.length;
+  return (
+    <div className="tbento-col">
+      {pair.map(t => (
+        <TCard key={t.id} t={t} flexVal={t.quote.length / total * 100} />
+      ))}
     </div>
   );
 }
@@ -121,7 +145,7 @@ export default function Testimonials() {
     <section className="testimonials-section" id="avis" aria-label="Témoignages">
       <div className="tbento-container">
 
-        {/* Header row */}
+        {/* Header */}
         <div className="tbento-header">
           <div className="tbento-header-left">
             <div className="tbento-label">
@@ -157,10 +181,10 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Bento grid */}
+        {/* Grid */}
         <div className="tbento">
 
-          {/* ── Col 1 — Stat card ── */}
+          {/* Stat card */}
           <div className="tbento-card tbento-stat">
             <div className="tbento-rating-wrap">
               <span className="tbento-rating-num">4.8</span>
@@ -169,19 +193,16 @@ export default function Testimonials() {
             <p className="tbento-stat-desc">
               Des traders qui progressent grâce à la simulation sur de <strong>vrais prix</strong> de marché Solana.
             </p>
-
             <div className="tbento-brand">PaperMemes</div>
-
             <div className="tbento-stack-wrap">
               {STACK.map(i => <TAvatar key={i} initials={i} size="sm" />)}
               <span className="tbento-stack-count">+2k</span>
             </div>
             <p className="tbento-trusted">Trusted by traders worldwide</p>
-
             <a href="#install" className="tbento-cta-btn">Commencer gratuitement</a>
           </div>
 
-          {/* ── Slider ── */}
+          {/* Slider */}
           <div className="tbento-slider-wrap" aria-live="polite">
             <div
               className="tbento-slider-track"
@@ -189,8 +210,8 @@ export default function Testimonials() {
             >
               {SLIDES.map((cols, si) => (
                 <div key={si} className="tbento-slide" aria-hidden={si !== slide}>
-                  {cols.map((t, ci) => (
-                    <TestimonialCol key={t.initials} t={t} inverted={ci % 2 === 1} />
+                  {cols.map((pair, ci) => (
+                    <TCol key={ci} pair={pair as [T, T]} />
                   ))}
                 </div>
               ))}
