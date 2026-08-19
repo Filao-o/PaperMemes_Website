@@ -9,29 +9,29 @@ export const metadata: Metadata = {
 
 export default function WikiPage() {
   return (
-    <main className="wiki-main">
-      <div className="wiki-hero">
-        <p className="wiki-eyebrow">Documentation</p>
-        <h1 className="wiki-h1">Wiki PaperMemes</h1>
-        <p className="wiki-lead">
-          Tout ce qu'il faut savoir pour maîtriser PaperMemes.
-          Choisis une rubrique dans la barre latérale ou commence par le début.
+    <main className="wiki-index-page">
+      <div className="wiki-index-hero">
+        <p className="wiki-index-eyebrow">Documentation</p>
+        <h1 className="wiki-index-h1">Wiki PaperMemes</h1>
+        <p className="wiki-index-lead">
+          Tout ce qu&apos;il faut savoir pour maîtriser PaperMemes.
+          Choisis une rubrique ci-dessous ou commence par le début.
         </p>
-        <Link href="/wiki/installer" className="btn wiki-start-btn">
+        <Link href="/wiki/installer" className="wiki-index-start-btn">
           Commencer →
         </Link>
       </div>
 
-      <div className="wiki-index-grid">
+      <div className="wiki-index-categories">
         {WIKI_CATEGORIES.map(cat => (
-          <div key={cat.id} className="wiki-index-card">
-            <span className="wiki-index-label">{cat.label}</span>
-            <ul className="wiki-index-list">
+          <div key={cat.id} className="wiki-index-cat">
+            <h2 className="wiki-index-cat-title">{cat.label}</h2>
+            <ul className="wiki-index-cat-list">
               {cat.articles.map(a => (
                 <li key={a.slug}>
-                  <Link href={`/wiki/${a.slug}`} className="wiki-index-link">
-                    <span className="wiki-index-link-title">{a.title}</span>
-                    <span className="wiki-index-link-desc">{a.description}</span>
+                  <Link href={`/wiki/${a.slug}`} className="wiki-index-cat-link">
+                    <span className="wiki-index-cat-link-title">{a.title}</span>
+                    <span className="wiki-index-cat-link-desc">{a.description}</span>
                   </Link>
                 </li>
               ))}
