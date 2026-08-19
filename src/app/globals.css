@@ -367,13 +367,13 @@ cite { font-style: normal; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(0,0,0,0.05);
-  border: 1px solid rgba(0,0,0,0.1);
+  background: #111111;
+  border: 1px solid #111111;
   border-radius: 999px;
   padding: 6px 16px;
   font-size: 12px;
   font-weight: 500;
-  color: rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.85);
   animation: fadeUp 0.6s var(--ease) both;
   align-self: flex-start;
   margin-bottom: 36px;
@@ -487,10 +487,6 @@ cite { font-style: normal; }
 .hero-footer {
   position: relative;
   z-index: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 40px;
   padding: 28px 0 48px;
   border-top: 1px solid rgba(0,0,0,0.08);
 }
@@ -499,8 +495,7 @@ cite { font-style: normal; }
   display: flex;
   flex-direction: column;
   gap: 10px;
-  flex: 1;
-  max-width: 380px;
+  width: 100%;
 }
 
 .hero-bottom-label {

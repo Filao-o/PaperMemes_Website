@@ -108,20 +108,12 @@ export default function Hero() {
         </div>
 
         <h1 className="hero-title">
-          Deviens <strong>rentable</strong> avant<br />
-          de risquer ton capital<span className="hero-dot">.</span>
+          Deviens <strong>rentable</strong> avant de risquer ton capital<span className="hero-dot">.</span>
         </h1>
 
         <p className="hero-desc">
           Simule le trading de memecoins sur de vrais prix de marché avec un wallet virtuel en SOL. Gagne de l&apos;expérience — sans risquer un seul centime.
         </p>
-
-        <a href="#install" className="hero-link-cta" onClick={e => scrollTo(e, '#install')}>
-          Commencer gratuitement
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
 
         <div ref={ctasRef} className="hero-ctas">
           <a href="#install" className="btn-pixel-primary" onClick={e => scrollTo(e, '#install')}>
@@ -168,16 +160,6 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero-info-cols">
-          <div className="hero-info-col">
-            <span className="hero-info-title">Extension Chrome n°1</span>
-            <span className="hero-info-desc">Paper trading sur de vrais prix de marché.</span>
-          </div>
-          <div className="hero-info-col">
-            <span className="hero-info-title">Zéro risque, vrais <span ref={priceRef} className="hero-price-flicker">prix</span></span>
-            <span className="hero-info-desc">Gagne de l&apos;expérience sans risquer un centime.</span>
-          </div>
-        </div>
       </div>
     </section>
   );
