@@ -75,9 +75,11 @@ export default function Nav() {
           <nav aria-label="Main navigation">
             <ul className="nav-links">
               <li><a href="/#suite" onClick={e => scrollTo(e, '#suite')}>Fonctionnalités</a></li>
-              <li><a href="/#how" onClick={e => scrollTo(e, '#how')}>Comment ça marche</a></li>
-              <li><a href="/#why" onClick={e => scrollTo(e, '#why')}>Pourquoi PaperMemes</a></li>
               <li><a href="/#faq" onClick={e => scrollTo(e, '#faq')}>FAQ</a></li>
+              <li><Link href="/wiki">Wiki</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
+              <li><Link href="/dashboard">Dashboard</Link></li>
+              <li><Link href="/pro">Pro</Link></li>
             </ul>
           </nav>
 
@@ -152,9 +154,11 @@ export default function Nav() {
           <nav>
             <ul>
               <li><a href="/#suite" onClick={e => scrollTo(e, '#suite')}>Fonctionnalités</a></li>
-              <li><a href="/#how" onClick={e => scrollTo(e, '#how')}>Comment ça marche</a></li>
-              <li><a href="/#why" onClick={e => scrollTo(e, '#why')}>Pourquoi PaperMemes</a></li>
               <li><a href="/#faq" onClick={e => scrollTo(e, '#faq')}>FAQ</a></li>
+              <li><Link href="/wiki" onClick={closeMenu}>Wiki</Link></li>
+              <li><Link href="/blog" onClick={closeMenu}>Blog</Link></li>
+              <li><Link href="/dashboard" onClick={closeMenu}>Dashboard</Link></li>
+              <li><Link href="/pro" onClick={closeMenu}>Pro</Link></li>
               {!loading && !user && (
                 <>
                   <li>
