@@ -851,8 +851,13 @@ cite { font-style: normal; }
 
 /* Header */
 .tbento-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   margin-bottom: 36px;
+  gap: 16px;
 }
+.tbento-header-left { display: flex; flex-direction: column; }
 .tbento-label {
   display: inline-flex;
   align-items: center;
@@ -873,29 +878,80 @@ cite { font-style: normal; }
 }
 .tbento-dot { color: var(--c-green); }
 
-/* Grid — stat card + 3 flex columns */
+/* Nav buttons */
+.tbento-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-bottom: 6px;
+}
+.tbento-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--c-border-md);
+  background: var(--c-bg);
+  color: var(--c-text);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+}
+.tbento-nav-btn:hover:not(:disabled) {
+  background: var(--c-bg-3);
+  border-color: rgba(0,0,0,0.22);
+}
+.tbento-nav-btn:disabled { opacity: 0.3; cursor: default; }
+.tbento-nav-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-3);
+  min-width: 32px;
+  text-align: center;
+}
+
+/* Grid — stat card | slider area */
 .tbento {
   display: grid;
-  grid-template-columns: 1.1fr 1fr 1fr 1fr;
-  grid-auto-rows: 1fr;
+  grid-template-columns: 1.1fr 3fr;
   gap: 16px;
   align-items: stretch;
 }
 
-/* Column wrappers for cols 2-4 */
+/* Slider wrapper */
+.tbento-slider-wrap {
+  overflow: hidden;
+  min-height: 460px;
+}
+.tbento-slider-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tbento-slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+/* Column wrappers inside each slide */
 .tbento-col {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  min-height: 440px;
+  height: 100%;
 }
 
-/* Author card = flex: 1 (1/4), Quote card = flex: 3 (3/4) */
+/* Author card = flex: 1 (1/5), Quote card = flex: 4 (4/5) */
 .tbento-col > .tbento-card:first-child { flex: 1; }
-.tbento-col > .tbento-card:last-child  { flex: 3; }
+.tbento-col > .tbento-card:last-child  { flex: 4; }
 
 /* Inverted column: quote (large) on top, author (small) on bottom */
-.tbento-col--inv > .tbento-card:first-child { flex: 3; }
+.tbento-col--inv > .tbento-card:first-child { flex: 4; }
 .tbento-col--inv > .tbento-card:last-child  { flex: 1; }
 
 /* Base card */
@@ -916,7 +972,6 @@ cite { font-style: normal; }
   border-color: #111111;
   color: #ffffff;
   justify-content: space-between;
-  grid-row: 1;
 }
 
 .tbento-rating-wrap {
@@ -1036,17 +1091,16 @@ cite { font-style: normal; }
 
 /* Responsive */
 @media (max-width: 960px) {
-  .tbento {
-    grid-template-columns: 1fr 1fr;
-  }
-  .tbento-stat { grid-column: 1 / 3; grid-row: 1; }
-  .tbento-col { min-height: 360px; }
+  .tbento { grid-template-columns: 1fr; }
+  .tbento-slider-wrap { min-height: 380px; }
+  .tbento-slide { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 560px) {
-  .tbento { grid-template-columns: 1fr; }
-  .tbento-stat { grid-column: 1; }
-  .tbento-col { min-height: 300px; }
+@media (max-width: 600px) {
+  .tbento-slide { grid-template-columns: 1fr; }
+  .tbento-slider-wrap { min-height: auto; }
+  .tbento-col { min-height: 280px; }
+  .tbento-header { flex-direction: column; align-items: flex-start; }
 }
 
 /* ============================================================
