@@ -563,109 +563,100 @@ cite { font-style: normal; }
    SUITE SECTION — FEATURE GRID
    ============================================================ */
 .suite {
-  background: transparent;
+  background: #f0f4f8;
   position: relative;
-  overflow: hidden;
 }
 
 .feat-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  max-width: 1100px;
-  margin: 0 auto;
 }
 
 .feat-card {
-  position: relative;
-  aspect-ratio: 1 / 1.15;
-  border-radius: var(--r-lg);
-  background: var(--c-surface);
-  border: 1px solid var(--c-border);
-  overflow: hidden;
-  transition: border-color 0.5s var(--ease), transform 0.5s var(--ease), background 0.5s var(--ease), box-shadow 0.5s var(--ease);
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 .feat-card:hover {
-  border-color: var(--c-border-md);
-  background: var(--c-bg);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.09);
 }
 
-.feat-face {
-  position: absolute;
-  inset: 0;
+/* Top row: icon + link button */
+.feat-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feat-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  text-align: center;
-  transition: opacity 0.6s ease;
+  flex-shrink: 0;
 }
-.feat-card:hover .feat-face { opacity: 0; }
+
+.feat-link-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1px solid rgba(0,0,0,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.feat-link-btn:hover { background: #e2e8f0; color: #111111; }
 
 .feat-name {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  line-height: 1.15;
-  color: var(--c-text);
+  line-height: 1.2;
+  color: #111111;
+  flex: 1;
 }
 
-.feat-tag {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  padding: 5px 12px;
-  border-radius: var(--r-full);
-  background: var(--c-surface-2);
-  border: 1px solid var(--c-border);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--c-text-2);
-  transition: opacity 0.4s var(--ease);
-  z-index: 2;
-}
-.feat-card:hover .feat-tag { opacity: 0; }
-
-.feat-desc {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  padding: 26px;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  background: var(--c-surface);
-}
-.feat-card:hover .feat-desc { opacity: 1; }
-.feat-desc p {
-  font-size: var(--text-sm);
-  color: var(--c-text-2);
-  line-height: 1.6;
+.feat-desc-text {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #64748b;
+  flex: 1;
 }
 
-.feat-wiki-link {
+/* "Voir le wiki" pill button at card bottom */
+.feat-learn-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid rgba(0,0,0,0.07);
   font-size: 13px;
   font-weight: 600;
-  color: var(--c-text);
+  color: #334155;
   text-decoration: none;
-  padding-bottom: 3px;
-  border-bottom: 1px solid var(--c-border-md);
-  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+  align-self: flex-start;
+  transition: background 0.15s, color 0.15s;
+  margin-top: auto;
 }
-.feat-wiki-link:hover {
-  color: var(--c-green);
-  border-color: var(--c-green);
-}
+.feat-learn-btn:hover { background: #e2e8f0; color: #111111; }
 
 .suite-wiki {
   display: flex;
@@ -678,7 +669,6 @@ cite { font-style: normal; }
 }
 @media (max-width: 560px) {
   .feat-grid { grid-template-columns: 1fr; }
-  .feat-card { aspect-ratio: 16 / 9; }
 }
 
 /* ============================================================
