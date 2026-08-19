@@ -45,31 +45,31 @@ const SLIDES: T[][][] = [
     [
       {
         id: 't1', initials: 'LM', name: 'Lucas M.', handle: '@lucasm_sol',
-        quote: 'J'ai enfin compris ma gestion du risque sans cramer un seul euro. Le wallet virtuel change tout. Je rejoue les mêmes setups encore et encore jusqu'à ce qu'ils deviennent un réflexe.',
+        quote: "J’ai enfin compris ma gestion du risque sans cramer un seul euro. Le wallet virtuel change tout. Je rejoue les mêmes setups encore et encore jusqu’à ce qu’ils deviennent un réflexe.",
       },
       {
         id: 't2', initials: 'SR', name: 'Sophie R.', handle: '@sophie_trades',
-        quote: 'Mon win rate simulé est passé de 41 % à 67 % en un mois. La confiance vient de la répétition.',
+        quote: "Mon win rate simulé est passé de 41 % à 67 % en un mois. La confiance vient de la répétition.",
       },
     ],
     [
       {
         id: 't3', initials: 'DK', name: '0xDegen_K', handle: '@0xdegen_k',
-        quote: 'Je me suis entraîné 6 semaines avant de passer en réel. Meilleure décision de mon année crypto. Mon premier vrai trade était rentable.',
+        quote: "Je me suis entraîné 6 semaines avant de passer en réel. Meilleure décision de mon année crypto. Mon premier vrai trade était rentable.",
       },
       {
         id: 't4', initials: 'NF', name: 'Naima F.', handle: '@naima_defi',
-        quote: 'PaperMemes m'a permis de comprendre les patterns de pump sans risquer mes économies. Indispensable pour tout débutant sérieux.',
+        quote: "PaperMemes m’a permis de comprendre les patterns de pump sans risquer mes économies. Indispensable pour tout débutant sérieux.",
       },
     ],
     [
       {
         id: 't5', initials: 'EL', name: 'Emma L.', handle: '@emma_sol',
-        quote: 'Simple, efficace, gratuit. Que demander de plus ?',
+        quote: "Simple, efficace, gratuit. Que demander de plus ?",
       },
       {
         id: 't6', initials: 'KB', name: 'Kevin B.', handle: '@kb_onchain',
-        quote: 'Le meilleur outil pour passer du FOMO à une vraie stratégie. J'avais peur de rater des opportunités en attendant. En réalité PaperMemes m'a fait réaliser que je tradais trop souvent. Maintenant je suis patient et mes résultats parlent.',
+        quote: "Le meilleur outil pour passer du FOMO à une vraie stratégie. J’avais peur de rater des opportunités en attendant. En réalité PaperMemes m’a fait réaliser que je tradais trop souvent. Maintenant je suis patient et mes résultats parlent.",
       },
     ],
   ],
@@ -78,31 +78,31 @@ const SLIDES: T[][][] = [
     [
       {
         id: 't7', initials: 'TR', name: 'Thomas R.', handle: '@thomasr_onchain',
-        quote: 'La gamification aide vraiment. Tu veux battre ton propre record, tu rejoues encore et encore. Sans t'en rendre compte, tu intègres les patterns du marché Solana en profondeur.',
+        quote: "La gamification aide vraiment. Tu veux battre ton propre record, tu rejoues encore et encore. Sans t’en rendre compte, tu intègres les patterns du marché Solana en profondeur.",
       },
       {
         id: 't8', initials: 'AV', name: 'Alex V.', handle: '@alexv_defi',
-        quote: 'Parfait pour apprendre sans se brûler les doigts dès le départ.',
+        quote: "Parfait pour apprendre sans se brûler les doigts dès le départ.",
       },
     ],
     [
       {
         id: 't9', initials: 'MR', name: 'Maxime R.', handle: '@maxr_crypto',
-        quote: 'Mon portefeuille virtuel était en +340 % après 6 semaines. J'ai décidé de passer en réel avec une vraie confiance, pas de l'arrogance.',
+        quote: "Mon portefeuille virtuel était en +340 % après 6 semaines. J’ai décidé de passer en réel avec une vraie confiance, pas de l’arrogance.",
       },
       {
         id: 't10', initials: 'JC', name: 'Julie C.', handle: '@juliec_sol',
-        quote: 'Avant PaperMemes je perdais sur chaque trade. Maintenant je comprends la structure du marché, je gère mon risque et j'ai une stratégie claire. C'est le meilleur investissement de temps que j'ai fait.',
+        quote: "Avant PaperMemes je perdais sur chaque trade. Maintenant je comprends la structure du marché, je gère mon risque et j’ai une stratégie claire. C’est le meilleur investissement de temps que j’ai fait.",
       },
     ],
     [
       {
         id: 't11', initials: 'PL', name: 'Pierre L.', handle: '@pierrel_memes',
-        quote: 'La simulation sur vrais prix change tout. Je comprends enfin pourquoi mes anciens trades échouaient et ce que je dois corriger.',
+        quote: "La simulation sur vrais prix change tout. Je comprends enfin pourquoi mes anciens trades échouaient et ce que je dois corriger.",
       },
       {
         id: 't12', initials: 'SC', name: 'Sara C.', handle: '@sarac_web3',
-        quote: 'Je n'arrivais pas à tenir mes stop-loss. Après 3 semaines sur PaperMemes à simuler des entrées et sorties, ça devient un réflexe. Je ne rate plus mes exits.',
+        quote: "Je n’arrivais pas à tenir mes stop-loss. Après 3 semaines sur PaperMemes à simuler des entrées et sorties, ça devient un réflexe. Je ne rate plus mes exits.",
       },
     ],
   ],
