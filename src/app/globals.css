@@ -318,7 +318,7 @@ cite { font-style: normal; }
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  padding: 0;
+  padding: 0 120px;
   overflow: hidden;
   isolation: isolate;
 }
@@ -357,14 +357,10 @@ cite { font-style: normal; }
   flex: 1;
   display: flex;
   flex-direction: column;
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-  padding-left: max(80px, calc((100vw - 1280px) / 2 + 80px));
-  padding-right: max(80px, calc((100vw - 1280px) / 2 + 80px));
   justify-content: center;
   padding-top: 140px;
   padding-bottom: 48px;
+  max-width: 800px;
 }
 
 .hero-badge {
@@ -491,7 +487,7 @@ cite { font-style: normal; }
 .hero-footer {
   position: relative;
   z-index: 1;
-  padding: 28px max(80px, calc((100vw - 1280px) / 2 + 80px)) 48px;
+  padding: 28px 0 48px;
   border-top: 1px solid rgba(0,0,0,0.08);
 }
 
@@ -2104,7 +2100,8 @@ cite { font-style: normal; }
   .section { padding: var(--sp-7) 0; }
   .nav-links, .nav-cta { display: none; }
   .nav-burger { display: flex; }
-  .hero-body { padding-top: 110px; padding-left: 24px; padding-right: 24px; }
+  .hero { padding: 0 24px; }
+  .hero-body { padding-top: 110px; }
   .hero-ctas { flex-direction: column; align-items: flex-start; }
   .hero-footer {
     flex-direction: column;
