@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { WIKI_CATEGORIES } from '@/lib/wiki';
+import WikiSearch from '@/components/WikiSearch';
 
 export const metadata: Metadata = {
   title: 'Wiki PaperMemes — Guide & documentation',
@@ -17,6 +18,7 @@ export default function WikiPage() {
           Tout ce qu&apos;il faut savoir pour maîtriser PaperMemes.
           Choisis une rubrique ci-dessous ou commence par le début.
         </p>
+        <WikiSearch />
         <Link href="/wiki/installer" className="wiki-index-start-btn">
           Commencer →
         </Link>
