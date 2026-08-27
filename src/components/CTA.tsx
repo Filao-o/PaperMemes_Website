@@ -7,7 +7,7 @@ export default function CTA() {
         <div className="cta-content">
           <p className="cta-badge">8 500+ traders en formation</p>
           <h2 id="cta-title" className="cta-title">
-            Arrête d&apos;apprendre<br /><span className="text-white-dim">en perdant de l&apos;argent réel</span>
+            Ta prochaine session de trading<br /><span className="text-white-dim">ne devrait rien te coûter</span>
           </h2>
           <p className="cta-desc">
             Installe Papermemes, entraîne-toi sur de vrais marchés et passe au vrai trading uniquement quand tu es prêt.
