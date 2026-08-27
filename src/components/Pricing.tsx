@@ -37,6 +37,13 @@ const FEATURE_GROUPS: FeatureGroup[] = [
 const PRO_GROUPS: FeatureGroup[] = [
   ...FEATURE_GROUPS,
   {
+    category: 'Fonctionnalités avancées',
+    items: [
+      'Dashboard Pro',
+    ],
+    highlight: true,
+  },
+  {
     category: 'Compétition',
     items: [
       'Tournoi demo mensuel',
