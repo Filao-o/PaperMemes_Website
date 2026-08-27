@@ -1,21 +1,50 @@
 import Link from 'next/link';
 
-const FREE_ITEMS = [
-  'Wallet virtuel SOL illimité',
-  'TP / SL automatiques',
-  'Rugcheck intégré',
-  'Historique des trades',
-  'Calendrier de performance',
-  'Widget détachable',
+interface FeatureGroup {
+  category: string;
+  items: string[];
+  highlight?: boolean;
+}
+
+const FEATURE_GROUPS: FeatureGroup[] = [
+  {
+    category: 'Trading',
+    items: [
+      'Wallet virtuel illimité',
+      'Achats / ventes personnalisés',
+      'TP / SL automatiques',
+      'Conversion en temps réel SOL/USD',
+    ],
+  },
+  {
+    category: 'Personnalisation',
+    items: [
+      'Tracking des positions uniques',
+      'UX personnalisable',
+    ],
+  },
+  {
+    category: 'Suivi & analyse',
+    items: [
+      'Dashboard intégré',
+      'Historique des trades',
+      'Notes de trades',
+      'Calendrier de performances',
+    ],
+  },
 ];
 
-const PRO_ITEMS = [
-  'Tout ce qui est inclus en Gratuit',
-  'Journal de trading avancé',
-  'Replay de trades passés',
-  'Classement complet (leaderboard)',
-  'Accès prioritaire aux nouvelles fonctionnalités',
-  'Support prioritaire',
+const PRO_GROUPS: FeatureGroup[] = [
+  ...FEATURE_GROUPS,
+  {
+    category: 'Compétition',
+    items: [
+      'Tournoi demo mensuel',
+      'Cashprize',
+      'Leaderboard',
+    ],
+    highlight: true,
+  },
 ];
 
 const Check = () => (
@@ -23,6 +52,32 @@ const Check = () => (
     <polyline points="20 6 9 17 4 12" />
   </svg>
 );
+
+function FeatureList({ groups }: { groups: FeatureGroup[] }) {
+  return (
+    <div className="pricing-feature-groups">
+      {groups.map((group, gi) => (
+        <div
+          key={gi}
+          className={`pricing-feature-group${group.highlight ? ' pricing-feature-group--highlight' : ''}`}
+        >
+          <p className="pricing-feature-cat">
+            {group.category}
+            {group.highlight && <span className="pricing-feature-cat-tag">Exclusif Pro</span>}
+          </p>
+          <ul className="pricing-features">
+            {group.items.map((item, i) => (
+              <li key={i}>
+                <span className="pricing-check"><Check /></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function Pricing() {
   return (
@@ -56,14 +111,7 @@ export default function Pricing() {
             <Link href="#install" className="pricing-btn pricing-btn--outline">
               Commencer gratuitement
             </Link>
-            <ul className="pricing-features">
-              {FREE_ITEMS.map((item, i) => (
-                <li key={i}>
-                  <span className="pricing-check"><Check /></span>
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <FeatureList groups={FEATURE_GROUPS} />
           </div>
 
           {/* Pro — coming soon, fully disabled */}
@@ -78,14 +126,7 @@ export default function Pricing() {
             <span className="pricing-btn pricing-btn--solid pricing-btn--disabled" aria-hidden="true">
               Bientôt disponible
             </span>
-            <ul className="pricing-features">
-              {PRO_ITEMS.map((item, i) => (
-                <li key={i}>
-                  <span className="pricing-check"><Check /></span>
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <FeatureList groups={PRO_GROUPS} />
           </div>
 
         </div>
