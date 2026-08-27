@@ -64,10 +64,10 @@ export default function Nav() {
           <Link href="/" className="logo" aria-label="Papermemes — home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logo/ppm-black-nobg.svg"
+              src="/logo/papermemes-wordmark.svg"
               alt="Papermemes"
-              height={40}
-              style={{ width: 'auto', height: 40 }}
+              height={32}
+              style={{ width: 'auto', height: 32 }}
               className="logo-img"
             />
           </Link>
