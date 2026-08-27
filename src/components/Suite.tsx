@@ -140,7 +140,7 @@ export default function Suite() {
         <header className="section-header">
           <p className="section-tag">Fonctionnalités</p>
           <h2 id="suite-title" className="section-title">
-            La suite complète<br /><span className="text-white-dim">de paper trading</span>
+            Des outils de pro,<br /><span className="text-white-dim">pensés pour progresser</span>
           </h2>
         </header>
 

@@ -223,7 +223,7 @@ export default function Testimonials() {
               <span className="tbento-rating-denom">/5</span>
             </div>
             <p className="tbento-stat-desc">
-              Des traders qui progressent grâce à la simulation sur de <strong>vrais prix</strong> de marché Solana.
+              Des traders qui progressent grâce à la simulation sur de <strong>vrais prix</strong> de marché Solana — sans jamais avoir risqué le moindre euro avant d&apos;être vraiment prêts.
             </p>
             <div className="tbento-brand">PaperMemes</div>
             <div className="tbento-stack-wrap">

@@ -108,11 +108,11 @@ export default function Hero() {
         </div>
 
         <h1 className="hero-title">
-          Deviens <strong>rentable</strong> avant de risquer ton capital<span className="hero-dot">.</span>
+          Apprends à devenir <strong>rentable</strong> avant de risquer ton capital<span className="hero-dot">.</span>
         </h1>
 
         <p className="hero-desc">
-          Simule le trading de memecoins sur de vrais prix de marché avec un wallet virtuel en SOL. Gagne de l&apos;expérience — sans risquer un seul centime.
+          Simule tes trades sur de vrais prix de marché Solana avec un wallet virtuel en SOL. Teste tes stratégies, muscle ta gestion du risque, et ne passe en réel que lorsque tes résultats parlent pour toi.
         </p>
 
         <div ref={ctasRef} className="hero-ctas">
@@ -131,7 +131,7 @@ export default function Hero() {
 
       <div className="hero-footer">
         <div className="hero-ticker-section">
-          <span className="hero-bottom-label">Integrates with your favorite platforms</span>
+          <span className="hero-bottom-label">Compatible avec tes plateformes préférées</span>
           <div className="hero-bottom-ticker-wrap">
             <div ref={tickerRef} className="hero-bottom-ticker">
               {[...Array(4)].flatMap((_, set) =>

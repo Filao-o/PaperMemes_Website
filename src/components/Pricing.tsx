@@ -36,9 +36,11 @@ export default function Pricing() {
             Tarifs
           </div>
           <h2 id="pricing-title" className="pricing-title">
-            Simple &amp; transparent<span className="pricing-dot">.</span>
+            Commence gratuitement<span className="pricing-dot">.</span>
           </h2>
-          <p className="pricing-sub">Commence gratuitement, passe au Pro quand tu es prêt.</p>
+          <p className="pricing-sub">
+            PaperMemes est 100 % gratuit pour t&apos;entraîner dès aujourd&apos;hui. Le plan Pro arrive bientôt, avec des outils encore plus poussés pour les traders sérieux.
+          </p>
         </div>
 
         <div className="pricing-grid">
@@ -64,18 +66,18 @@ export default function Pricing() {
             </ul>
           </div>
 
-          {/* Pro */}
-          <div className="pricing-card pricing-card--pro">
-            <div className="pricing-popular-badge">Populaire</div>
+          {/* Pro — coming soon, fully disabled */}
+          <div className="pricing-card pricing-card--pro pricing-card--disabled" aria-disabled="true">
+            <div className="pricing-soon-badge">Bientôt disponible</div>
             <div className="pricing-plan-label">Pro</div>
             <div className="pricing-price-wrap">
               <span className="pricing-price">9 €</span>
               <span className="pricing-period">/ mois</span>
             </div>
             <p className="pricing-plan-desc">Pour les traders sérieux qui veulent progresser vite.</p>
-            <Link href="#install" className="pricing-btn pricing-btn--solid">
-              Essayer Pro gratuitement
-            </Link>
+            <span className="pricing-btn pricing-btn--solid pricing-btn--disabled" aria-hidden="true">
+              Bientôt disponible
+            </span>
             <ul className="pricing-features">
               {PRO_ITEMS.map((item, i) => (
                 <li key={i}>
