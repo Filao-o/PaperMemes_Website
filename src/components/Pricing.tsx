@@ -35,7 +35,12 @@ const FEATURE_GROUPS: FeatureGroup[] = [
 ];
 
 const PRO_GROUPS: FeatureGroup[] = [
-  ...FEATURE_GROUPS,
+  {
+    category: 'Inclus',
+    items: [
+      'Toutes les fonctionnalités du plan Gratuit',
+    ],
+  },
   {
     category: 'Fonctionnalités avancées',
     items: [
